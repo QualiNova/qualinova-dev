@@ -72,7 +72,7 @@ const HowItWorks: React.FC = () => {
       </section>
 
       {/* Get Started Section */}
-      <section className="bg-blue-900 py-16 flex-grow py-[8%]">
+      <section className="bg-blue-900 py-16 flex-grow">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-white text-3xl font-bold mb-2">Ready to Get Started?</h2>
           <p className="text-[#DBEAFE] mb-8">
