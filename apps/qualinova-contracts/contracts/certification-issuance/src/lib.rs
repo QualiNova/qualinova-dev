@@ -181,9 +181,24 @@ impl CertificationContract {
     
     // === Certificate Verification ===
     
-    // Verify a certificate's signature
-    pub fn verify_certificate_signature(env: &Env, certificate_id: CertificateId) -> bool {
-        verification::verify_certificate_signature(env, certificate_id)
+    // Primary verification function to check if a certificate is valid
+    pub fn verify_by_id(env: &Env, certificate_id: CertificateId) -> bool {
+        verification::verify_by_id(env, &certificate_id)
+    }
+    
+    // Check if a certificate's signature is authentic
+    pub fn check_authentic_signature(env: &Env, certificate_id: CertificateId, authority_signature: Option<BytesN<64>>) -> bool {
+        verification::check_authentic_signature(env, &certificate_id, authority_signature)
+    }
+    
+    // Validate if a certificate is expired
+    pub fn validate_expiry_date(env: &Env, certificate_id: CertificateId) -> bool {
+        verification::validate_expiry_date(env, &certificate_id)
+    }
+    
+    // Generate a comprehensive verification report for a certificate
+    pub fn generate_verification_report(env: &Env, certificate_id: CertificateId) -> Map<String, String> {
+        verification::generate_verification_report(env, &certificate_id)
     }
     
     // === Certificate Revocation ===
