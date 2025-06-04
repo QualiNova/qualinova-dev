@@ -50,12 +50,11 @@ const LoginForm = () => {
                     <div className="space-y-1.5">
                         <label className="block text-sm font-medium text-white">Email</label>
                         <Input
-                            placeholder="name@example.com"
+                            label={""} placeholder="name@example.com"
                             type="email"
                             {...register("email")}
                             error={errors.email?.message}
-                            className="bg-[#0c0c16] border-[#27272A] text-white"
-                        />
+                            className="bg-[#0c0c16] border-[#27272A] text-white"                        />
                     </div>
 
                     <div className="space-y-1.5">
@@ -66,10 +65,9 @@ const LoginForm = () => {
                             </Link>
                         </div>
                         <PasswordInput
-                            {...register("password")}
-                            error={errors.password?.message}
-                            className="bg-[#0c0c16] border-[#27272A] text-white"
-                        />
+                        label={""} {...register("password")}
+                        error={errors.password?.message}
+                        className="bg-[#0c0c16] border-[#27272A] text-white"                        />
                     </div>
 
                     <div className="flex items-center">

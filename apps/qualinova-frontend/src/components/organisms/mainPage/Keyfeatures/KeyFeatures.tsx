@@ -143,7 +143,7 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
 
   return (
     <section className="bg-gray-900 pt-[12%] px-4">
-      <div className="max-w-6xl mx-auto max-w-[75%]">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{title}</h2>
           <p className="max-w-2xl text-xl leading-7 font-normal text-[#9CA3AF] mx-auto">
