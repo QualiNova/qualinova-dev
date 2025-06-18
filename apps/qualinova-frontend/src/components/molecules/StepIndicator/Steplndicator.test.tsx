@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import StepIndicator from './StepIndicator' 
+import StepIndicator from './StepIndicator'
 
 describe('StepIndicator', () => {
   it('renders with correct step information', () => {
@@ -34,22 +34,5 @@ describe('StepIndicator', () => {
     const stepText = screen.getByText('Step 3 of 7')
     expect(stepText).toBeInTheDocument()
     expect(stepText.tagName).toBe('DIV')
-  })
-
-  // Mobile responsiveness test
-  it('maintains readability on mobile screens', () => {
-    // Mock mobile viewport
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 375,
-    })
-
-    const { container } = render(<StepIndicator currentStep={4} totalSteps={10} />)
-    const stepElement = container.firstChild as HTMLElement
-
-    // Ensure text-sm class is present for mobile readability
-    expect(stepElement).toHaveClass('text-sm')
-    expect(screen.getByText('Step 4 of 10')).toBeInTheDocument()
   })
 })

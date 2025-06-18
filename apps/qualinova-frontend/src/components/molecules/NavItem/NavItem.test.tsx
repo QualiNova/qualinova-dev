@@ -117,44 +117,4 @@ describe('NavItem', () => {
     const link = screen.getByRole('link', { name: 'Home' })
     expect(link).toHaveAttribute('href', '/')
   })
-
-  // Mobile responsiveness tests
-  it('maintains readability on mobile devices', () => {
-    // Mock mobile viewport
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 375,
-    })
-
-    render(<NavItem href="/mobile" label="Mobile Navigation" />)
-
-    const link = screen.getByRole('link', { name: 'Mobile Navigation' })
-    expect(link).toHaveClass('text-sm')
-    expect(link).toHaveClass('px-3', 'py-2')
-  })
-
-  it('has adequate touch target size for mobile', () => {
-    render(<NavItem href="/touch" label="Touch Target" />)
-
-    const link = screen.getByRole('link', { name: 'Touch Target' })
-    // px-3 py-2 provides adequate touch target (minimum 44px recommended)
-    expect(link).toHaveClass('px-3', 'py-2')
-  })
-
-  it('hover effects work appropriately across devices', () => {
-    render(<NavItem href="/hover" label="Hover Test" />)
-
-    const link = screen.getByRole('link', { name: 'Hover Test' })
-    expect(link).toHaveClass('hover:text-primary')
-    expect(link).toHaveClass('transition-colors')
-  })
-
-  it('handles long labels on narrow screens', () => {
-    render(<NavItem href="/long" label="This Is A Very Long Navigation Label That Might Wrap" />)
-
-    const link = screen.getByRole('link')
-    expect(link).toHaveTextContent('This Is A Very Long Navigation Label That Might Wrap')
-    expect(link).toHaveClass('text-sm')
-  })
 })

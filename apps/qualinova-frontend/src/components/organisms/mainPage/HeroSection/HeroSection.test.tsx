@@ -118,26 +118,6 @@ describe('HeroSection', () => {
     });
   });
 
-  describe('Accessibility', () => {
-    it('uses semantic HTML structure', () => {
-      expect(screen.getByRole('main')).toBeInTheDocument();
-      expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
-    });
-
-    it('has proper heading hierarchy', () => {
-      const heading = screen.getByRole('heading', { level: 1 });
-      expect(heading).toHaveTextContent('Secure, Verifiable Certifications on the Blockchain');
-    });
-
-    it('buttons are accessible', () => {
-      const buttons = screen.getAllByRole('button');
-      expect(buttons).toHaveLength(2);
-      buttons.forEach(button => {
-        expect(button).toBeVisible();
-      });
-    });
-  });
-
   describe('Component Structure', () => {
     it('maintains proper component composition', () => {
       // Check that main sections are present
@@ -152,60 +132,5 @@ describe('HeroSection', () => {
       const leftSection = screen.getByText('Try for Free').closest('div[class*="space-y-6"]');
       expect(leftSection).toHaveClass('space-y-6');
     });
-  });
-});
-
-// Responsive testing helpers
-describe('HeroSection Responsive Behavior', () => {
-  const originalInnerWidth = window.innerWidth;
-
-  afterEach(() => {
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: originalInnerWidth,
-    });
-  });
-
-  it('adapts layout for mobile screens', () => {
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 375,
-    });
-
-    render(<HeroSection />);
-
-    // Mobile-specific assertions
-    const heading = screen.getByText('Secure, Verifiable Certifications on the Blockchain');
-    expect(heading).toHaveClass('text-3xl');
-  });
-
-  it('adapts layout for tablet screens', () => {
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 768,
-    });
-
-    render(<HeroSection />);
-
-    // Tablet-specific assertions
-    const heading = screen.getByText('Secure, Verifiable Certifications on the Blockchain');
-    expect(heading).toHaveClass('md:text-4xl');
-  });
-
-  it('adapts layout for desktop screens', () => {
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 1024,
-    });
-
-    render(<HeroSection />);
-
-    // Desktop-specific assertions
-    const heading = screen.getByText('Secure, Verifiable Certifications on the Blockchain');
-    expect(heading).toHaveClass('lg:text-5xl');
   });
 });

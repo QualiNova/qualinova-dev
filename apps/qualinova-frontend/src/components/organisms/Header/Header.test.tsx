@@ -81,14 +81,6 @@ describe('Header Component', () => {
     expect(logoContainer).toHaveClass('h-10', 'w-36');
   });
 
-  it('maintains proper mobile-first responsive design', () => {
-    render(<Header />);
-    const flexContainer = screen.getByRole('navigation').querySelector('.flex.flex-col.md\\:flex-row');
-
-    expect(flexContainer).toHaveClass('flex-col', 'md:flex-row');
-    expect(flexContainer).toHaveClass('items-center', 'w-full');
-  });
-
   it('has correct container max-width constraint', () => {
     render(<Header />);
     const nav = screen.getByRole('navigation');

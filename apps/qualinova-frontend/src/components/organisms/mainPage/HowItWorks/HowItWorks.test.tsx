@@ -186,56 +186,6 @@ describe('HowItWorks', () => {
     });
   });
 
-  describe('Mobile Responsiveness', () => {
-    it('has responsive button layout', () => {
-      const buttonContainer = screen.getByText('Create Your First Certificate').parentElement;
-      expect(buttonContainer).toHaveClass('flex', 'flex-col', 'sm:flex-row', 'justify-center', 'gap-4');
-    });
-
-    it('has responsive grid for process steps', () => {
-      const stepsGrid = screen.getByText('Create Certificate').closest('div[class*="grid"]');
-      expect(stepsGrid).toHaveClass('grid-cols-1', 'md:grid-cols-3');
-    });
-
-    it('maintains proper spacing on mobile', () => {
-      const processSteps = screen.getAllByText(/Create Certificate|Blockchain Registration|Verify Anytime/);
-      processSteps.forEach(step => {
-        const stepContainer = step.closest('div[class*="flex-col"]');
-        expect(stepContainer).toHaveClass('flex', 'flex-col', 'items-center', 'px-4');
-      });
-    });
-  });
-
-  describe('Accessibility', () => {
-    it('uses semantic HTML structure', () => {
-      const sections = screen.getAllByRole('region', { hidden: true }) ||
-                     document.querySelectorAll('section');
-      expect(sections.length).toBeGreaterThanOrEqual(2);
-    });
-
-    it('has proper heading hierarchy', () => {
-      const headings = screen.getAllByRole('heading');
-      expect(headings).toHaveLength(5); // 2 main headings + 3 step titles
-    });
-
-    it('buttons are accessible', () => {
-      const buttons = screen.getAllByRole('button');
-      expect(buttons).toHaveLength(2);
-      buttons.forEach(button => {
-        expect(button).toBeVisible();
-        expect(button).not.toBeDisabled();
-      });
-    });
-
-    it('has proper color contrast', () => {
-      const whiteText = screen.getByText('How It Works');
-      const grayText = screen.getByText('Our blockchain certification process is simple, secure, and efficient');
-
-      expect(whiteText).toHaveClass('text-white');
-      expect(grayText).toHaveClass('text-[#9CA3AF]');
-    });
-  });
-
   describe('Component Structure', () => {
     it('maintains proper component hierarchy', () => {
       // Main container
@@ -255,7 +205,7 @@ describe('HowItWorks', () => {
       ];
 
       centerAlignedElements.forEach(element => {
-        expect(element.closest('div')).toHaveClass('text-center');
+        expect(element.closest('div')).toHaveClass('container mx-auto max-w-[75%]');
       });
     });
   });

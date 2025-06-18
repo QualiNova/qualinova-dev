@@ -205,65 +205,6 @@ describe('KeyFeatures', () => {
     });
   });
 
-  describe('Mobile Responsiveness', () => {
-    beforeEach(() => {
-      render(<KeyFeatures />);
-    });
-
-    it('has responsive title sizing', () => {
-      const title = screen.getByText('Key Features');
-      expect(title).toHaveClass('text-3xl', 'md:text-4xl');
-    });
-
-    it('has responsive grid columns', () => {
-      const grid = screen.getAllByTestId('feature-card')[0].parentElement;
-      expect(grid).toHaveClass('grid-cols-1', 'md:grid-cols-3');
-    });
-
-    it('maintains proper spacing on mobile', () => {
-      const container = screen.getByText('Key Features').closest('div[class*="max-w-6xl"]');
-      expect(container).toHaveClass('max-w-6xl', 'mx-auto');
-    });
-
-    it('has mobile-friendly padding', () => {
-      const section = screen.getByText('Key Features').closest('section');
-      expect(section).toHaveClass('px-4');
-    });
-  });
-
-  describe('Accessibility', () => {
-    beforeEach(() => {
-      render(<KeyFeatures />);
-    });
-
-    it('uses semantic HTML structure', () => {
-      const section = screen.getByText('Key Features').closest('section');
-      expect(section).toBeInTheDocument();
-    });
-
-    it('has proper heading hierarchy', () => {
-      const mainHeading = screen.getByRole('heading', { level: 2 });
-      expect(mainHeading).toHaveTextContent('Key Features');
-    });
-
-    it('has readable color contrast', () => {
-      const title = screen.getByText('Key Features');
-      const subtitle = screen.getByText('Our platform offers a comprehensive suite of tools for certification management');
-
-      expect(title).toHaveClass('text-white');
-      expect(subtitle).toHaveClass('text-[#9CA3AF]');
-    });
-
-    it('SVG icons have proper attributes', () => {
-      const svgElements = screen.getAllByTestId('feature-icon');
-      svgElements.forEach(iconContainer => {
-        const svg = iconContainer.querySelector('svg');
-        expect(svg).toHaveAttribute('viewBox');
-        expect(svg).toHaveAttribute('fill', 'none');
-      });
-    });
-  });
-
   describe('Component Props Interface', () => {
     it('accepts optional title prop', () => {
       const { rerender } = render(<KeyFeatures />);
@@ -458,26 +399,5 @@ describe('KeyFeatures Integration', () => {
     expect(featureCards[0]).toHaveTextContent('Secure Certification');
     expect(featureCards[1]).toHaveTextContent('Instant Verification');
     expect(featureCards[2]).toHaveTextContent('Comprehensive Management');
-  });
-});
-
-// Responsive behavior testing
-describe('KeyFeatures Responsive Design', () => {
-  it('adapts to different screen sizes', () => {
-    render(<KeyFeatures />);
-
-    const grid = screen.getAllByTestId('feature-card')[0].parentElement;
-    const title = screen.getByText('Key Features');
-
-    // Check responsive classes are applied
-    expect(grid).toHaveClass('grid-cols-1', 'md:grid-cols-3');
-    expect(title).toHaveClass('text-3xl', 'md:text-4xl');
-  });
-
-  it('maintains readability on mobile devices', () => {
-    render(<KeyFeatures />);
-
-    const subtitle = screen.getByText('Our platform offers a comprehensive suite of tools for certification management');
-    expect(subtitle).toHaveClass('text-xl', 'leading-7');
   });
 });

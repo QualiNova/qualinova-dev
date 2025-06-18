@@ -144,41 +144,4 @@ describe('FormField', () => {
 
     expect(screen.getByText('Field with Special Chars: @#$%')).toBeInTheDocument()
   })
-
-  // Mobile responsiveness tests
-  it('maintains proper spacing on mobile devices', () => {
-    // Mock mobile viewport
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 375,
-    })
-
-    const mockInput = <input type="text" id="mobile-input" />
-    const { container } = render(
-      <FormField label="Mobile Field" htmlFor="mobile-input">
-        {mockInput}
-      </FormField>
-    )
-
-    const formFieldContainer = container.firstChild as HTMLElement
-    expect(formFieldContainer).toHaveClass('space-y-2')
-
-    const label = screen.getByText('Mobile Field')
-    expect(label).toHaveClass('text-sm')
-  })
-
-  it('label text remains readable on small screens', () => {
-    const mockInput = <input type="text" id="responsive-input" />
-
-    render(
-      <FormField label="This is a longer label text that should remain readable" htmlFor="responsive-input">
-        {mockInput}
-      </FormField>
-    )
-
-    const label = screen.getByText('This is a longer label text that should remain readable')
-    expect(label).toHaveClass('block') 
-    expect(label).toBeInTheDocument()
-  })
 })

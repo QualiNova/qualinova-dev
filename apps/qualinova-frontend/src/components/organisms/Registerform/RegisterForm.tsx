@@ -63,6 +63,7 @@ const RegisterForm = () => {
           <div className="space-y-1.5">
             <label className="block text-sm font-medium text-white">Email</label>
             <Input
+              label="Email"
               placeholder="name@example.com"
               type="email"
               {...register("email")}
@@ -76,6 +77,7 @@ const RegisterForm = () => {
               <label className="block text-sm font-medium text-white">Password</label>
             </div>
             <PasswordInput
+              label="Password"
               {...register("password")}
               error={errors.password?.message}
               className="bg-[#09090B] border-[#27272A] text-white"

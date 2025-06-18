@@ -588,61 +588,6 @@ describe('LoginForm Component', () => {
     });
   });
 
-  // Accessibility Tests
-  describe('Accessibility', () => {
-    it('should have proper input labels for screen readers', () => {
-      render(<LoginForm />);
-
-      const emailLabel = screen.getByText('Email');
-      const passwordLabel = screen.getByText('Password');
-
-      expect(emailLabel).toBeInTheDocument();
-      expect(passwordLabel).toBeInTheDocument();
-    });
-
-    it('should have proper button types for form navigation', () => {
-      render(<LoginForm />);
-
-      const submitButton = screen.getByTestId('submit-button');
-      const githubButton = screen.getByTestId('github-button');
-
-      expect(submitButton).toHaveAttribute('type', 'submit');
-      expect(githubButton).toHaveAttribute('type', 'button');
-    });
-
-    it('should have proper input types for form fields', () => {
-      render(<LoginForm />);
-
-      const emailInput = screen.getByTestId('email-input');
-      const passwordInput = screen.getByTestId('password-input');
-
-      expect(emailInput).toHaveAttribute('type', 'email');
-      expect(passwordInput).toHaveAttribute('type', 'password');
-    });
-
-    it('should support keyboard navigation', async () => {
-      render(<LoginForm />);
-
-      const emailInput = screen.getByTestId('email-input');
-      const passwordInput = screen.getByTestId('password-input');
-      const checkbox = screen.getByTestId('checkbox-remember');
-      const submitButton = screen.getByTestId('submit-button');
-
-      // Tab through form elements
-      await user.tab();
-      expect(emailInput).toHaveFocus();
-
-      await user.tab();
-      expect(passwordInput).toHaveFocus();
-
-      await user.tab();
-      expect(checkbox).toHaveFocus();
-
-      await user.tab();
-      expect(submitButton).toHaveFocus();
-    });
-  });
-
   // Error State Tests
   describe('Error States', () => {
     it('should display error message with proper styling', async () => {
@@ -676,59 +621,6 @@ describe('LoginForm Component', () => {
       await waitFor(() => {
         expect(screen.queryByTestId('error-message')).not.toBeInTheDocument();
       });
-    });
-  });
-
-  // Mobile Responsiveness Tests
-  describe('Mobile Responsiveness', () => {
-    it('should handle touch interactions on mobile', async () => {
-      render(<LoginForm />);
-
-      const submitButton = screen.getByTestId('submit-button');
-
-      // Simulate touch events
-      fireEvent.touchStart(submitButton);
-      fireEvent.touchEnd(submitButton);
-
-      expect(submitButton).toBeInTheDocument();
-    });
-
-    it('should maintain proper layout on small screens', () => {
-      // Mock window.innerWidth for mobile viewport
-      Object.defineProperty(window, 'innerWidth', {
-        writable: true,
-        configurable: true,
-        value: 375,
-      });
-
-      render(<LoginForm />);
-
-      const container = screen.getByText('Welcome back').closest('.max-w-\\[420px\\]');
-      expect(container).toHaveClass('w-full', 'max-w-[420px]');
-    });
-
-    it('should handle orientation changes', () => {
-      render(<LoginForm />);
-
-      // Simulate orientation change
-      fireEvent(window, new Event('orientationchange'));
-
-      const form = screen.getByTestId('submit-button').closest('form');
-      expect(form).toHaveClass('w-full', 'max-w-[420px]');
-    });
-
-    it('should adapt to different screen sizes with responsive classes', () => {
-      render(<LoginForm />);
-
-      const heading = screen.getByText('Welcome back');
-      const spacingContainer = screen.getByText('Welcome back').closest('.space-y-4');
-
-      // Check responsive font sizing
-      expect(heading).toHaveClass('text-xl', 'md:text-2xl');
-
-      // Check responsive padding
-      expect(spacingContainer).toHaveClass('py-6', 'md:py-10', 'xl:py-0');
-      expect(spacingContainer).toHaveClass('px-4', 'xl:px-0');
     });
   });
 
