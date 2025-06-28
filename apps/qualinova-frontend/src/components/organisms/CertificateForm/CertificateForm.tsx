@@ -1,125 +1,44 @@
-"use client"
-import type React from "react"
-import { useState } from "react"
+"use client";
+
+import type React from "react";
 import { Button } from "@/components/atoms/Button/Button";
 import Input from "@/components/atoms/Input/Input";
-import Textarea from "@/components/atoms/Textarea/Textarea"
+import Textarea from "@/components/atoms/Textarea/Textarea";
 import Select from "@/components/atoms/Select/Select";
 import Radio from "@/components/atoms/Radio/Radio";
-import FormField from "@/components/molecules/FormField/FormField"
-import StepIndicator from "@/components/molecules/StepIndicator/StepIndicator"
-import { ArrowRight } from "lucide-react"
-interface FormData {
-  name: string
-  type: string
-  description: string
-  template: string
-}
+import FormField from "@/components/molecules/FormField/FormField";
+import StepIndicator from "@/components/molecules/StepIndicator/StepIndicator";
+import { ArrowRight } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { step1Schema } from "@/schemas/CreateCertificate/CreateCertificateSchemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useCreateCertificate } from "@/contexts/CreateCertificateContext";
 
-interface FormErrors {
-  name?: string
-  type?: string
-  description?: string
-}
-
-const submitCertificateStep1 = async ( ): Promise<{ success: boolean; message: string }> => {
-  await new Promise((resolve) => setTimeout(resolve, 1500))
-
-  return {
-    success: true,
-    message: "Step 1 data saved successfully",
-  }
-}
+type Step1FormData = z.infer<typeof step1Schema>;
 
 export default function CertificateForm() {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    type: "",
-    description: "",
-    template: "standard",
-  })
+  const { data, updateData, setStep } = useCreateCertificate();
 
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<{
-    success?: boolean
-    message?: string
-  }>({})
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<Step1FormData>({
+    resolver: zodResolver(step1Schema),
+    mode: "onChange",
+    defaultValues: {
+      name: data.name ?? "",
+      description: data.description ?? "",
+      template: data.template ?? "standard",
+      type: data.type ?? "",
+    },
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-
-    if (errors[name as keyof FormErrors]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }))
-    }
-    if (submitStatus.message) {
-      setSubmitStatus({})
-    }
-  }
-
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {}
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Certificate name is required"
-    } else if (formData.name.trim().length < 3) {
-      newErrors.name = "Certificate name must be at least 3 characters"
-    }
-
-    if (!formData.type) {
-      newErrors.type = "Please select a certificate type"
-    }
-
-    if (!formData.description.trim()) {
-      newErrors.description = "Description is required"
-    } else if (formData.description.trim().length < 10) {
-      newErrors.description = "Description must be at least 10 characters"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validateForm()) {
-      setSubmitStatus({
-        success: false,
-        message: "Please fix the errors before proceeding",
-      })
-      return
-    }
-
-    setIsSubmitting(true)
-    setSubmitStatus({})
-
-    try {
-      const response = await submitCertificateStep1()
-      if (response.success) {
-        localStorage.setItem("certificateFormStep1", JSON.stringify(formData))
-        setSubmitStatus({
-          success: true,
-          message: response.message,
-        })
-
-        setTimeout(() => {
-          alert("In a real application, you would now be redirected to Step 2")
-        }, 1000)
-      } else {
-        throw new Error(response.message || "Failed to submit form")
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error)
-      setSubmitStatus({
-        success: false,
-        message: error instanceof Error ? error.message : "An unexpected error occurred",
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  const onSubmit = (data: Step1FormData) => {
+    updateData(data);
+    setStep?.(2);
+  };
 
   return (
     <div className="bg-secondary rounded-md p-6">
@@ -127,33 +46,25 @@ export default function CertificateForm() {
         <h2 className="text-lg font-medium">Certificate Details</h2>
         <StepIndicator currentStep={1} totalSteps={3} />
       </div>
-      <p className="text-sm text-muted-foreground mb-6">Enter the basic certificate information</p>
+      <p className="text-sm text-muted-foreground mb-6">
+        Enter the basic certificate information
+      </p>
 
-      {submitStatus.message && (
-        <div
-          className={`p-3 mb-4 rounded-md ${submitStatus.success ? "bg-green-900/20 text-green-400" : "bg-red-900/20 text-red-400"}`}
-        >
-          {submitStatus.message}
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <FormField label="Certificate Name" htmlFor="name">
           <Input
-          label="Name"
+            label="Name"
             id="name"
-            name="name"
             placeholder="e.g. ISO 9001 Quality Management"
-            value={formData.name}
-            onChange={handleChange}
-            error={errors.name}
+            {...register("name")}
+            error={errors.name?.message}
             disabled={isSubmitting}
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? "name-error" : undefined}
           />
           {errors.name && (
             <div id="name-error" className="sr-only">
-              {errors.name}
+              {errors.name?.message}
             </div>
           )}
         </FormField>
@@ -161,24 +72,29 @@ export default function CertificateForm() {
         <FormField label="Certificate Type" htmlFor="type">
           <Select
             id="type"
-            name="type"
-            value={formData.type}
-            onChange={handleChange}
-            error={errors.type}
+            className="bg-transparent *:bg-[#030817]"
+            {...register("type")}
+            error={errors.type?.message}
             disabled={isSubmitting}
             aria-invalid={!!errors.type}
             aria-describedby={errors.type ? "type-error" : undefined}
           >
-            <option value="" disabled>
+            <option value="" disabled className="bg-transparent">
               Select certificate type
             </option>
-            <option value="quality">Quality</option>
-            <option value="compliance">Compliance</option>
-            <option value="achievement">Achievement</option>
+            <option value="quality" className="bg-transparent">
+              Quality
+            </option>
+            <option value="compliance" className="bg-transparent">
+              Compliance
+            </option>
+            <option value="achievement" className="bg-transparent">
+              Achievement
+            </option>
           </Select>
           {errors.type && (
             <div id="type-error" className="sr-only">
-              {errors.type}
+              {errors.type?.message}
             </div>
           )}
         </FormField>
@@ -186,78 +102,71 @@ export default function CertificateForm() {
         <FormField label="Description" htmlFor="description">
           <Textarea
             id="description"
-            name="description"
             placeholder="Describe what this certificate represents..."
-            value={formData.description}
-            onChange={handleChange}
+            className="bg-transparent"
+            {...register("description")}
             rows={4}
-            error={errors.description}
+            error={errors.description?.message}
             disabled={isSubmitting}
             aria-invalid={!!errors.description}
-            aria-describedby={errors.description ? "description-error" : undefined}
+            aria-describedby={
+              errors.description ? "description-error" : undefined
+            }
           />
           {errors.description && (
             <div id="description-error" className="sr-only">
-              {errors.description}
+              {errors.description?.message}
             </div>
           )}
         </FormField>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium">Certificate Template</label>
+          <label className="block text-sm font-medium">
+            Certificate Template
+          </label>
           <div className="space-y-2">
             <Radio
-              name="template"
               value="standard"
               label="Standard Template"
-              checked={formData.template === "standard"}
-              onChange={handleChange}
+              {...register("template")}
               disabled={isSubmitting}
+              defaultChecked
             />
             <Radio
-              name="template"
               value="premium"
               label="Premium Template"
-              checked={formData.template === "premium"}
-              onChange={handleChange}
+              {...register("template")}
               disabled={isSubmitting}
             />
             <Radio
-              name="template"
               value="custom"
               label="Custom Template"
-              checked={formData.template === "custom"}
-              onChange={handleChange}
+              {...register("template")}
               disabled={isSubmitting}
             />
           </div>
         </div>
 
-<div className="flex justify-end">
-  <Button
-    type="submit"
-    className="flex items-center gap-2 bg-white !text-black hover:bg-gray-200"
-    disabled={isSubmitting}
-  >
-    {isSubmitting ? (
-      <>
-        <span className="animate-pulse">Processing...</span>
-        <span className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full"></span>
-      </>
-    ) : (
-      <>
-        <span className="!text-black">Next Step</span>
-        <ArrowRight size={16} className="!text-black" />
-      </>
-    )}
-  </Button>
-</div>
-
-
-
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+            className="flex items-center gap-2 bg-white !text-black hover:bg-gray-200"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <span className="animate-pulse">Processing...</span>
+                <span className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full"></span>
+              </>
+            ) : (
+              <>
+                <span className="!text-black">Next Step</span>
+                <ArrowRight size={16} className="!text-black" />
+              </>
+            )}
+          </Button>
+        </div>
       </form>
     </div>
-  )
+  );
 }
-
-
