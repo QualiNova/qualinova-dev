@@ -1,5 +1,10 @@
-import CreateCertificatePage from "@/components/templates/CreateCertificate/CreateCertificatePage"
+import CreateCertificatePage from "@/components/templates/CreateCertificate/CreateCertificatePage";
+import { CreateCertificateProvider } from "@/contexts/CreateCertificateContext";
 
 export default function CreateCertificate() {
-  return <CreateCertificatePage/>
+  return (
+    <CreateCertificateProvider>
+      <CreateCertificatePage />
+    </CreateCertificateProvider>
+  );
 }
