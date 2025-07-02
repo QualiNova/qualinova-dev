@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
+import TabButton from "../../atoms/TabButton";
 
 // Define the tab types
 type TabType = "overview" | "analytics" | "reports";
@@ -72,17 +73,14 @@ const DashboardTabs = ({
           {isMenuOpen && (
             <div className="mt-2 py-1 bg-[#1E293B] rounded-md shadow-lg">
               {tabs.map((tab) => (
-                <button
+                <TabButton
                   key={tab.id}
+                  id={tab.id}
+                  label={tab.label}
+                  isActive={activeTab === tab.id}
                   onClick={() => handleTabClick(tab.id)}
-                  className={`block w-full text-left px-4 py-2 text-sm ${
-                    activeTab === tab.id
-                      ? "bg-[#020817] text-white rounded h-8"
-                      : "text-gray-400"
-                  }`}
-                >
-                  {tab.label}
-                </button>
+                  className="block w-full text-left"
+                />
               ))}
             </div>
           )}
@@ -91,17 +89,13 @@ const DashboardTabs = ({
         /* Desktop view - styled to match the design */
         <nav className="flex flex-wrap">
           {tabs.map((tab) => (
-            <button
+            <TabButton
               key={tab.id}
+              id={tab.id}
+              label={tab.label}
+              isActive={activeTab === tab.id}
               onClick={() => onTabChange(tab.id)}
-              className={`px-4 py-2 text-sm font-medium transition-colors focus:outline-none ${
-                activeTab === tab.id
-                  ? "bg-[#020817] text-white my-auto mx-auto rounded h-8"
-                  : "text-gray-400 hover:text-gray-300"
-              }`}
-            >
-              {tab.label}
-            </button>
+            />
           ))}
         </nav>
       )}
