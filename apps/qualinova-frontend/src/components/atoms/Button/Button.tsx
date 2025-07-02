@@ -19,7 +19,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       ...props
     },
-    ref
+    ref,
   ) => {
     const baseStyles =
       "px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center justify-center";
@@ -40,7 +40,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           fullWidth && "w-full",
           (disabled || isLoading) && "opacity-50 cursor-not-allowed",
           "cursor-pointer",
-          className
+          className,
         )}
         disabled={disabled || isLoading}
         {...props}
@@ -52,7 +52,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

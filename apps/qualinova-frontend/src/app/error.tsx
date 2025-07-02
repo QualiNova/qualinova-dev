@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
 export default function Error({
   error,
@@ -12,9 +12,12 @@ export default function Error({
 }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
-      <h1 className="text-4xl font-bold text-white mb-4">Something went wrong!</h1>
+      <h1 className="text-4xl font-bold text-white mb-4">
+        Something went wrong!
+      </h1>
       <p className="text-gray-400 mb-8 text-center max-w-md">
-        {error.message || 'An unexpected error occurred. Please try again later.'}
+        {error.message ||
+          "An unexpected error occurred. Please try again later."}
       </p>
       <div className="flex gap-4">
         <button

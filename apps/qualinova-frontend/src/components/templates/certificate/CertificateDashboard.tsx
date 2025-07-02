@@ -161,7 +161,7 @@ const CertificateDashboard = () => {
                 height={20}
                 className=""
               />
-            <Select
+              <Select
                 onChange={(e) => {
                   const key = e.target.value as SortOption;
                   sort[key](key + " from sort function");

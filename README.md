@@ -45,25 +45,29 @@ To get a local copy up and running, follow these steps:
 
 The roadmap outlines the future plans:
 
-- **Q1 2025**: 
-   - Launch the MVP (Minimum Viable Product) with core certification features.
-   - Gather user feedback for improvements.
+- **Q1 2025**:
 
-- **Q2 2025**: 
-   - Implement the real-time verification system using QR codes and certification numbers.
-   - Enhance user interface and user experience based on feedback.
+  - Launch the MVP (Minimum Viable Product) with core certification features.
+  - Gather user feedback for improvements.
 
-- **Q3 2025**: 
-   - Integrate smart contracts for automated certification management.
-   - Expand documentation and tutorials for developers.
+- **Q2 2025**:
 
-- **Q4 2025**: 
-   - Add advanced security features to further protect certification data.
-   - Explore partnerships with certifying companies and regulated industries.
+  - Implement the real-time verification system using QR codes and certification numbers.
+  - Enhance user interface and user experience based on feedback.
 
-- **Q1 2026**: 
-   - Expand integration capabilities with existing business systems.
-   - Launch mobile application version for on-the-go verification.
+- **Q3 2025**:
+
+  - Integrate smart contracts for automated certification management.
+  - Expand documentation and tutorials for developers.
+
+- **Q4 2025**:
+
+  - Add advanced security features to further protect certification data.
+  - Explore partnerships with certifying companies and regulated industries.
+
+- **Q1 2026**:
+  - Expand integration capabilities with existing business systems.
+  - Launch mobile application version for on-the-go verification.
 
 ## Contributing
 

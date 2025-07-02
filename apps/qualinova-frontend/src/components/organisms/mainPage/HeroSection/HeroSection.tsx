@@ -1,9 +1,6 @@
-
 const HeroSection = () => {
   return (
     <div className="bg-gray-900 text-white font-sans">
-
-
       <main className="container mx-auto max-w-[75%] pt-[8%]">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-16">
           {/* Left Section - Content */}

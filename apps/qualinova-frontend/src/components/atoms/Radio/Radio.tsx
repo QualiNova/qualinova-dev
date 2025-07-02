@@ -12,7 +12,7 @@ export default function Radio({ className, label, ...props }: RadioProps) {
         type="radio"
         className={cn(
           "h-4 w-4 sm:h-5 sm:w-5 text-primary border-input transition-all duration-150",
-          className
+          className,
         )}
         {...props}
       />

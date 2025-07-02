@@ -47,7 +47,7 @@ function useCreateCertificate() {
   const context = useContext(CreateCertificateContext);
   if (!context) {
     throw new Error(
-      "useCreateCertificate must be used within a CreateCertificateProvider"
+      "useCreateCertificate must be used within a CreateCertificateProvider",
     );
   }
   return context;

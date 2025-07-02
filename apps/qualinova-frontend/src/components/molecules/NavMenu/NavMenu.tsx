@@ -12,7 +12,7 @@ const NavMenu = () => {
 
   return (
     <>
-     {/* Desktop Navigation */}
+      {/* Desktop Navigation */}
       <div className="hidden ml-6 md:flex space-x-2 px-1">
         <NavLink href="/">Home</NavLink>
         <NavLink href="/dashboard">Dashboard</NavLink>
@@ -32,26 +32,22 @@ const NavMenu = () => {
         {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
-
       {/* Mobile Menu */}
       {isMenuOpen && (
-            <div className="md:hidden mt-4 mr-auto ml-10 flex flex-col space-y-4">
-            <NavLink href='/'>Home</NavLink>
-            <NavLink href='/dashboard'>Dashboard</NavLink>
-            <NavLink href='/create-certificate'>Create Certificate</NavLink>
-            <NavLink href='/verify'>Verify</NavLink>
-            <NavLink href='/certificate'>Certificates</NavLink>
-            <div className="text-white space-y-4 flex flex-col">
-                <button>
-                Sign In
-                </button>
-                <button className='bg-[#2563EB] text-black px-3 py-2 rounded-sm hover:opacity-80'>
-                Sign Up
-                </button>
+        <div className="md:hidden mt-4 mr-auto ml-10 flex flex-col space-y-4">
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/dashboard">Dashboard</NavLink>
+          <NavLink href="/create-certificate">Create Certificate</NavLink>
+          <NavLink href="/verify">Verify</NavLink>
+          <NavLink href="/certificate">Certificates</NavLink>
+          <div className="text-white space-y-4 flex flex-col">
+            <button>Sign In</button>
+            <button className="bg-[#2563EB] text-black px-3 py-2 rounded-sm hover:opacity-80">
+              Sign Up
+            </button>
           </div>
-          </div>
-    )}
-
+        </div>
+      )}
     </>
   );
 };

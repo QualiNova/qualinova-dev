@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import FeatureCard from '@/components/atoms/Card/FeaturesCard';
+import React, { ReactNode } from "react";
+import FeatureCard from "@/components/atoms/Card/FeaturesCard";
 
 interface Feature {
   title: string;
@@ -18,12 +18,13 @@ interface KeyFeaturesProps {
 const KeyFeatures: React.FC<KeyFeaturesProps> = ({
   title = "Key Features",
   subtitle = "Our platform offers a comprehensive suite of tools for certification management",
-  features
+  features,
 }) => {
   const featuresData = [
     {
       title: "Secure Certification",
-      description: "Create tamper-proof certificates backed by blockchain technology",
+      description:
+        "Create tamper-proof certificates backed by blockchain technology",
       icon: (
         <svg
           className="w-6 h-6"
@@ -55,7 +56,7 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
         </svg>
       ),
       iconBgColor: "bg-blue-900/50",
-      iconTextColor: "text-blue-400"
+      iconTextColor: "text-blue-400",
     },
     {
       title: "Instant Verification",
@@ -84,11 +85,12 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
         </svg>
       ),
       iconBgColor: "bg-green-900/50",
-      iconTextColor: "text-green-400"
+      iconTextColor: "text-green-400",
     },
     {
       title: "Comprehensive Management",
-      description: "Manage all your certifications in one centralized dashboard",
+      description:
+        "Manage all your certifications in one centralized dashboard",
       icon: (
         <svg
           className="w-6 h-6"
@@ -134,8 +136,8 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
         </svg>
       ),
       iconBgColor: "bg-teal-900/50",
-      iconTextColor: "text-teal-400"
-    }
+      iconTextColor: "text-teal-400",
+    },
   ];
 
   // Use provided features or default to featuresData
@@ -145,7 +147,9 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
     <section className="bg-gray-900 pt-[12%] px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{title}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            {title}
+          </h2>
           <p className="max-w-2xl text-xl leading-7 font-normal text-[#9CA3AF] mx-auto">
             {subtitle}
           </p>

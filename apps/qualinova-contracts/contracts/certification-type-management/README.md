@@ -37,15 +37,15 @@ Each certification type contains the following information:
 
 ## Key Functions
 
-| Function | Description |
-|----------|-------------|
-| `register_certification_type` | Creates a new certification type with a unique ID |
-| `update_certification_type` | Updates specific fields for an existing certification type |
-| `deprecate_certification_type` | Marks a certification type as deprecated |
-| `list_all_certification_types` | Returns a list of all certification types |
+| Function                         | Description                                                   |
+| -------------------------------- | ------------------------------------------------------------- |
+| `register_certification_type`    | Creates a new certification type with a unique ID             |
+| `update_certification_type`      | Updates specific fields for an existing certification type    |
+| `deprecate_certification_type`   | Marks a certification type as deprecated                      |
+| `list_all_certification_types`   | Returns a list of all certification types                     |
 | `get_certification_type_details` | Gets detailed information about a specific certification type |
-| `set_required_evidence` | Updates the evidence required for a certification type |
-| `assign_authority_to_cert_type` | Assigns an authority to a certification type |
+| `set_required_evidence`          | Updates the evidence required for a certification type        |
+| `assign_authority_to_cert_type`  | Assigns an authority to a certification type                  |
 
 ## Error Handling
 

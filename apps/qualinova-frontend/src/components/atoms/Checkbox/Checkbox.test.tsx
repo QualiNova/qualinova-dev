@@ -29,7 +29,7 @@ describe("Checkbox Component", () => {
 
     expect(screen.getByText("This field is required")).toBeInTheDocument();
     expect(screen.getByText("This field is required")).toHaveClass(
-      "text-red-500"
+      "text-red-500",
     );
   });
 

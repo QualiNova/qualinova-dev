@@ -1,11 +1,15 @@
-import type { TextareaHTMLAttributes } from "react"
-import { cn } from "@/lib/utils"
+import type { TextareaHTMLAttributes } from "react";
+import { cn } from "@/lib/utils";
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  error?: string
+  error?: string;
 }
 
-export default function Textarea({ className, error, ...props }: TextareaProps) {
+export default function Textarea({
+  className,
+  error,
+  ...props
+}: TextareaProps) {
   return (
     <div className="w-full">
       <textarea
@@ -17,5 +21,5 @@ export default function Textarea({ className, error, ...props }: TextareaProps) 
       />
       {error && <p className="mt-1 text-xs sm:text-sm text-red-500">{error}</p>}
     </div>
-  )
+  );
 }

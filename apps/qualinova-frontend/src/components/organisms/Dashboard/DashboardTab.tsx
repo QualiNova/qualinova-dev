@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Menu } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Menu } from "lucide-react";
 
 // Define the tab types
-type TabType = 'overview' | 'analytics' | 'reports';
+type TabType = "overview" | "analytics" | "reports";
 
 interface DashboardTabsProps {
   activeTab: TabType;
@@ -10,14 +10,18 @@ interface DashboardTabsProps {
   className?: string;
 }
 
-const DashboardTabs = ({ activeTab, onTabChange, className }: DashboardTabsProps) => {
+const DashboardTabs = ({
+  activeTab,
+  onTabChange,
+  className,
+}: DashboardTabsProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const tabs: { id: TabType; label: string }[] = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'analytics', label: 'Analytics' },
-    { id: 'reports', label: 'Reports' },
+    { id: "overview", label: "Overview" },
+    { id: "analytics", label: "Analytics" },
+    { id: "reports", label: "Reports" },
   ];
 
   // Handle responsive behavior
@@ -30,10 +34,10 @@ const DashboardTabs = ({ activeTab, onTabChange, className }: DashboardTabsProps
     checkIsMobile();
 
     // Add event listener
-    window.addEventListener('resize', checkIsMobile);
+    window.addEventListener("resize", checkIsMobile);
 
     // Cleanup
-    return () => window.removeEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 
   const toggleMenu = () => {
@@ -46,13 +50,15 @@ const DashboardTabs = ({ activeTab, onTabChange, className }: DashboardTabsProps
   };
 
   return (
-    <div className={`bg-[#1E293B] rounded w-full max-w-[278px] ${className || ''}`}>
+    <div
+      className={`bg-[#1E293B] rounded w-full max-w-[278px] ${className || ""}`}
+    >
       {/* Mobile view */}
       {isMobile ? (
         <div>
           <div className="flex items-center justify-between p-2">
             <span className="text-sm font-medium text-gray-200">
-              {tabs.find(tab => tab.id === activeTab)?.label}
+              {tabs.find((tab) => tab.id === activeTab)?.label}
             </span>
             <button
               onClick={toggleMenu}
@@ -70,7 +76,9 @@ const DashboardTabs = ({ activeTab, onTabChange, className }: DashboardTabsProps
                   key={tab.id}
                   onClick={() => handleTabClick(tab.id)}
                   className={`block w-full text-left px-4 py-2 text-sm ${
-                    activeTab === tab.id ? 'bg-[#020817] text-white rounded h-8' : 'text-gray-400'
+                    activeTab === tab.id
+                      ? "bg-[#020817] text-white rounded h-8"
+                      : "text-gray-400"
                   }`}
                 >
                   {tab.label}
@@ -88,8 +96,8 @@ const DashboardTabs = ({ activeTab, onTabChange, className }: DashboardTabsProps
               onClick={() => onTabChange(tab.id)}
               className={`px-4 py-2 text-sm font-medium transition-colors focus:outline-none ${
                 activeTab === tab.id
-                  ? 'bg-[#020817] text-white my-auto mx-auto rounded h-8'
-                  : 'text-gray-400 hover:text-gray-300'
+                  ? "bg-[#020817] text-white my-auto mx-auto rounded h-8"
+                  : "text-gray-400 hover:text-gray-300"
               }`}
             >
               {tab.label}

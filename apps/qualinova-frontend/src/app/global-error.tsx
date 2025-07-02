@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
 export default function GlobalError({
   error,
@@ -15,7 +15,8 @@ export default function GlobalError({
       <body className="bg-[#09090B] text-white flex flex-col items-center justify-center min-h-screen px-4">
         <h1 className="text-4xl font-bold mb-4">Something went wrong!</h1>
         <p className="text-gray-400 mb-8 text-center max-w-md">
-          {error.message || 'An unexpected error occurred. Please try again later.'}
+          {error.message ||
+            "An unexpected error occurred. Please try again later."}
         </p>
         <div className="flex gap-4">
           <button

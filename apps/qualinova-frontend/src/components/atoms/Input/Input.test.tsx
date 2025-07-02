@@ -26,7 +26,7 @@ describe("Input Component", () => {
         placeholder="name@example.com"
         type="email"
         data-testid="email-input"
-      />
+      />,
     );
 
     const input = screen.getByTestId("email-input");
@@ -48,7 +48,7 @@ describe("Input Component", () => {
         label="Email"
         placeholder="name@example.com"
         {...mockRegister("email")}
-      />
+      />,
     );
 
     expect(mockRegister).toHaveBeenCalledWith("email");
@@ -59,7 +59,7 @@ describe("Input Component", () => {
         placeholder="name@example.com"
         {...mockRegister("email")}
         error="Email is invalid"
-      />
+      />,
     );
 
     expect(screen.getByText("Email is invalid")).toBeInTheDocument();

@@ -61,7 +61,9 @@ const RegisterForm = () => {
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-sm font-medium text-white">Email</label>
+            <label className="block text-sm font-medium text-white">
+              Email
+            </label>
             <Input
               label="Email"
               placeholder="name@example.com"
@@ -74,7 +76,9 @@ const RegisterForm = () => {
 
           <div className="space-y-1.5">
             <div className="flex justify-between">
-              <label className="block text-sm font-medium text-white">Password</label>
+              <label className="block text-sm font-medium text-white">
+                Password
+              </label>
             </div>
             <PasswordInput
               label="Password"
@@ -91,10 +95,20 @@ const RegisterForm = () => {
             <Checkbox
               label={
                 <div className="text-sm text-white">
-                  I agree to the{' '}
-                  <a href="#" className="text-[#2563EB] font-normal hover:underline">terms of service</a>{' '}
-                  and{' '}
-                  <a href="#" className="text-[#2563EB] font-normal hover:underline">privacy policy</a>
+                  I agree to the{" "}
+                  <a
+                    href="#"
+                    className="text-[#2563EB] font-normal hover:underline"
+                  >
+                    terms of service
+                  </a>{" "}
+                  and{" "}
+                  <a
+                    href="#"
+                    className="text-[#2563EB] font-normal hover:underline"
+                  >
+                    privacy policy
+                  </a>
                 </div>
               }
               {...register("terms")}
@@ -115,7 +129,9 @@ const RegisterForm = () => {
 
           <div className="flex justify-between items-center">
             <div className="h-[1px] w-[25%] bg-[#27272A]"></div>
-            <p className="text-[#A1A1AA] w-[50%] text-xs text-center">OR CONTINUE WITH</p>
+            <p className="text-[#A1A1AA] w-[50%] text-xs text-center">
+              OR CONTINUE WITH
+            </p>
             <div className="h-[1px] w-[25%] bg-[#27272A]"></div>
           </div>
 
@@ -135,7 +151,7 @@ const RegisterForm = () => {
 
           <div className="flex justify-center text-sm items-center">
             <p className="text-[#A1A1AA]">
-              Already have an account?{' '}
+              Already have an account?{" "}
               <Link
                 className="text-sm hover:underline text-[#2563EB]"
                 href="/login"

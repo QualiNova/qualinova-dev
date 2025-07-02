@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import DashboardTabs from './DashboardTab';
-import AnalyticsContent from './AnalyticsContent';
-import OverviewContent from './OverviewContent';
-import ReportsContent from './ReportsContent';
-import { RefreshCcw, PlusCircle, Menu } from 'lucide-react';
+import { useState } from "react";
+import DashboardTabs from "./DashboardTab";
+import AnalyticsContent from "./AnalyticsContent";
+import OverviewContent from "./OverviewContent";
+import ReportsContent from "./ReportsContent";
+import { RefreshCcw, PlusCircle, Menu } from "lucide-react";
 
-export type TabType = 'overview' | 'analytics' | 'reports';
+export type TabType = "overview" | "analytics" | "reports";
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState<TabType>('analytics');
+  const [activeTab, setActiveTab] = useState<TabType>("analytics");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleTabChange = (tab: TabType) => {
@@ -18,11 +18,11 @@ const Dashboard = () => {
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'overview':
+      case "overview":
         return <OverviewContent />;
-      case 'analytics':
+      case "analytics":
         return <AnalyticsContent />;
-      case 'reports':
+      case "reports":
         return <ReportsContent />;
       default:
         return <OverviewContent />;
@@ -47,10 +47,10 @@ const Dashboard = () => {
           </div>
 
           {/* Action buttons - hidden on mobile unless menu is open */}
-          <div className={`${mobileMenuOpen ? 'flex' : 'hidden'} sm:flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto`}>
-            <button
-              className="flex items-center justify-center px-3 py-1.5 bg-[#0F172A] rounded-md border border-[#1E293B] text-gray-300 hover:text-white"
-            >
+          <div
+            className={`${mobileMenuOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto`}
+          >
+            <button className="flex items-center justify-center px-3 py-1.5 bg-[#0F172A] rounded-md border border-[#1E293B] text-gray-300 hover:text-white">
               <RefreshCcw size={16} className="mr-1.5" />
               <span className="text-sm">Refresh</span>
             </button>
@@ -66,14 +66,12 @@ const Dashboard = () => {
         <DashboardTabs
           activeTab={activeTab}
           onTabChange={handleTabChange}
-          className={`${mobileMenuOpen ? 'block' : 'hidden'} sm:block`}
+          className={`${mobileMenuOpen ? "block" : "hidden"} sm:block`}
         />
 
         {/* Content section */}
         <div className="">
-          <div className="min-w-full">
-            {renderContent()}
-          </div>
+          <div className="min-w-full">{renderContent()}</div>
         </div>
       </main>
     </div>

@@ -19,7 +19,7 @@ export default function Select({
         className={cn(
           "flex h-10 w-full appearance-none rounded-md border bg-input px-3 py-2 text-sm  focus-visible:outline-none  disabled:cursor-not-allowed disabled:opacity-50",
           "flex h-10 sm:h-12 w-full appearance-none rounded-md border border-input bg-input px-3 py-2 text-sm sm:text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 touch-manipulation",
-          className
+          className,
         )}
         {...props}
       >

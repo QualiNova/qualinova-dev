@@ -1,12 +1,15 @@
 # Pull Request Overview
 
 ## Summary
+
 Provide a brief summary of what this PR accomplishes.
 
 ### Related Issues
+
 - Closes #[issue-number]
 
 ### Type of Change
+
 Mark with an `x` all the checkboxes that apply (like `[x]`).
 
 - [ ] Feat (A new feature)
@@ -19,25 +22,31 @@ Mark with an `x` all the checkboxes that apply (like `[x]`).
 - [ ] Chore (maintenance changes that do not fall into any of the other categories)
 
 ### Changes Made
+
 Provide a clear and concise description of what you changed and why.
 
-
 ### Technical Notes
+
 Include any technical details that reviewers should be aware of.
 
 ### ✅ Tests Results
+
 Describe the tests you performed to verify your changes:
 
 ### Test Coverage
+
 - [ ] ✅ Unit Tests
 - [ ] 📨 Integration Tests
 - [ ] 📟 Manual Testing
 
 ### Evidence
+
 Provide relevant evidence of testing (screenshots, test outputs, etc.).
 
 ### Testing Notes
+
 Include any special testing considerations or edge cases checked.
 
 ### Next Steps
+
 Indicate actions or improvements to be taken after this PR, if applicable.

@@ -1,10 +1,10 @@
-import Link from "next/link"
-import { cn } from "@/lib/utils"
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface NavItemProps {
-  href: string
-  label: string
-  active?: boolean
+  href: string;
+  label: string;
+  active?: boolean;
 }
 
 export default function NavItem({ href, label, active }: NavItemProps) {
@@ -18,6 +18,5 @@ export default function NavItem({ href, label, active }: NavItemProps) {
     >
       {label}
     </Link>
-  )
+  );
 }
-
