@@ -30,7 +30,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       secondary: 'bg-secondary-button-bg text-black-text rounded-md font-medium',
       outline:
         'border border-gray-border-800 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed',
-      plain: '!p-0 disabled:opacity-50 disabled:cursor-not-allowed',
+      plain: '!p-0 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-100',
     };
 
     return (

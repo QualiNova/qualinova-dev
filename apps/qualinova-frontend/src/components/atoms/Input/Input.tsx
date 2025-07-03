@@ -10,7 +10,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, className, ...props }, ref) => {
     return (
       <div className="flex flex-col">
-        <label className="text-white text-xs lg:text-sm">{label}</label>
+        <label aria-label={`Label for ${label}`} className="text-white text-xs lg:text-sm">
+          {label}
+        </label>
         <input
           ref={ref}
           {...props}
