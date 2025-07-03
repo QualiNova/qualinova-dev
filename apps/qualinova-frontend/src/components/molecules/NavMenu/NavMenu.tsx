@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { X, Menu } from "lucide-react";
-import NavLink from "@/components/atoms/NavLink/NavLink";
-import Button from "@/components/atoms/Button/Button";
+import React, { useState } from 'react';
+import { X, Menu } from 'lucide-react';
+import NavLink from '@/components/atoms/NavLink/NavLink';
+import Button from '@/components/atoms/Button/Button';
 
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,8 +23,8 @@ const NavMenu = () => {
 
       {/* Desktop Buttons */}
       <div className="hidden md:flex text-white space-x-4 ml-auto">
-        <Button>Sign In</Button>
-        <Button className="bg-[#2563EB] text-black">Sign Up</Button>
+        <Button variant="outline">Sign In</Button>
+        <Button variant="secondary">Sign Up</Button>
       </div>
 
       {/* Mobile Menu Button */}

@@ -1,5 +1,5 @@
-import type { InputHTMLAttributes } from "react";
-import { cn } from "@/lib/utils";
+import type { InputHTMLAttributes } from 'react';
+import { cn } from '@/lib/utils';
 
 interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -11,14 +11,12 @@ export default function Radio({ className, label, ...props }: RadioProps) {
       <input
         type="radio"
         className={cn(
-          "h-4 w-4 sm:h-5 sm:w-5 text-primary border-input transition-all duration-150",
-          className,
+          'h-4 w-4 sm:h-5 sm:w-5 text-primary border-input transition-all duration-150 accent-white',
+          className
         )}
         {...props}
       />
-      <span className="text-sm sm:text-base font-medium select-none">
-        {label}
-      </span>
+      <span className="text-xs sm:text-base font-medium select-none">{label}</span>
     </label>
   );
 }

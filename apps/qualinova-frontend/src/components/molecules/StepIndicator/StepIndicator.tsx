@@ -3,12 +3,9 @@ interface StepIndicatorProps {
   totalSteps: number;
 }
 
-export default function StepIndicator({
-  currentStep,
-  totalSteps,
-}: StepIndicatorProps) {
+export default function StepIndicator({ currentStep, totalSteps }: StepIndicatorProps) {
   return (
-    <div className="text-sm text-muted-foreground">
+    <div className="text-xs lg:text-sm text-gray-text-400">
       Step {currentStep} of {totalSteps}
     </div>
   );
