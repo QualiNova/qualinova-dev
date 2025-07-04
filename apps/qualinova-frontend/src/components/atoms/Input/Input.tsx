@@ -17,7 +17,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
           className={cn(
-            'mt-1 p-2 border border-gray-border-800 rounded-lg text-white text-xs lg:text-base focus:ring-2 focus:ring-slate-500 bg-transparent placeholder:text-xs placeholder:lg:text-base',
+            'custom-date-input mt-1 p-2 border border-gray-border-800 rounded-lg text-white text-xs lg:text-base focus:ring-2 focus:ring-slate-500 bg-transparent placeholder:text-xs placeholder:lg:text-base',
             className
           )}
         />
