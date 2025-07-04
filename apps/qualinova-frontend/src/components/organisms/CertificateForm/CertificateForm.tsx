@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import type React from "react";
-import { Button } from "@/components/atoms/Button/Button";
-import Input from "@/components/atoms/Input/Input";
-import Textarea from "@/components/atoms/Textarea/Textarea";
-import Select from "@/components/atoms/Select/Select";
-import Radio from "@/components/atoms/Radio/Radio";
-import FormField from "@/components/molecules/FormField/FormField";
-import StepIndicator from "@/components/molecules/StepIndicator/StepIndicator";
-import { ArrowRight } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { step1Schema } from "@/schemas/CreateCertificate/CreateCertificateSchemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useCreateCertificate } from "@/contexts/CreateCertificateContext";
+import type React from 'react';
+import { Button } from '@/components/atoms/Button/Button';
+import Input from '@/components/atoms/Input/Input';
+import Textarea from '@/components/atoms/Textarea/Textarea';
+import Select from '@/components/atoms/Select/Select';
+import Radio from '@/components/atoms/Radio/Radio';
+import FormField from '@/components/molecules/FormField/FormField';
+import StepIndicator from '@/components/molecules/StepIndicator/StepIndicator';
+import { ArrowRight, ChevronRight } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { step1Schema } from '@/schemas/CreateCertificate/CreateCertificateSchemas';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useCreateCertificate } from '@/contexts/CreateCertificateContext';
 
 type Step1FormData = z.infer<typeof step1Schema>;
 
@@ -26,12 +26,12 @@ export default function CertificateForm() {
     formState: { errors, isSubmitting },
   } = useForm<Step1FormData>({
     resolver: zodResolver(step1Schema),
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
-      name: data.name ?? "",
-      description: data.description ?? "",
-      template: data.template ?? "standard",
-      type: data.type ?? "",
+      name: data.name ?? '',
+      description: data.description ?? '',
+      template: data.template ?? 'standard',
+      type: data.type ?? '',
     },
   });
 
@@ -41,26 +41,25 @@ export default function CertificateForm() {
   };
 
   return (
-    <div className="bg-secondary rounded-md p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-medium">Certificate Details</h2>
+    <div className="bg-secondary rounded-lg p-4 lg:p-6 border border-gray-border-800">
+      <div className="flex justify-between items-center mb-1">
+        <h3 className="text-gray-text-50 font-semibold text-sm lg:text-2xl">Certificate Details</h3>
         <StepIndicator currentStep={1} totalSteps={3} />
       </div>
-      <p className="text-sm text-muted-foreground mb-6">
+      <p className="font-light text-gray-text-400 text-xs lg:text-sm mb-6">
         Enter the basic certificate information
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <FormField label="Certificate Name" htmlFor="name">
           <Input
-            label="Name"
             id="name"
             placeholder="e.g. ISO 9001 Quality Management"
-            {...register("name")}
+            {...register('name')}
             error={errors.name?.message}
             disabled={isSubmitting}
             aria-invalid={!!errors.name}
-            aria-describedby={errors.name ? "name-error" : undefined}
+            aria-describedby={errors.name ? 'name-error' : undefined}
           />
           {errors.name && (
             <div id="name-error" className="sr-only">
@@ -72,12 +71,12 @@ export default function CertificateForm() {
         <FormField label="Certificate Type" htmlFor="type">
           <Select
             id="type"
-            className="bg-transparent *:bg-[#030817]"
-            {...register("type")}
+            className="bg-transparent *:bg-[#030817] border border-gray-border-800"
+            {...register('type')}
             error={errors.type?.message}
             disabled={isSubmitting}
             aria-invalid={!!errors.type}
-            aria-describedby={errors.type ? "type-error" : undefined}
+            aria-describedby={errors.type ? 'type-error' : undefined}
           >
             <option value="" disabled className="bg-transparent">
               Select certificate type
@@ -103,15 +102,13 @@ export default function CertificateForm() {
           <Textarea
             id="description"
             placeholder="Describe what this certificate represents..."
-            className="bg-transparent"
-            {...register("description")}
+            className="bg-transparent border border-gray-border-800 resize-none"
+            {...register('description')}
             rows={4}
             error={errors.description?.message}
             disabled={isSubmitting}
             aria-invalid={!!errors.description}
-            aria-describedby={
-              errors.description ? "description-error" : undefined
-            }
+            aria-describedby={errors.description ? 'description-error' : undefined}
           />
           {errors.description && (
             <div id="description-error" className="sr-only">
@@ -121,27 +118,26 @@ export default function CertificateForm() {
         </FormField>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium">
-            Certificate Template
-          </label>
+          <label className="block text-sm lg:text-base font-medium">Certificate Template</label>
           <div className="space-y-2">
             <Radio
               value="standard"
               label="Standard Template"
-              {...register("template")}
+              {...register('template')}
               disabled={isSubmitting}
               defaultChecked
+              className=""
             />
             <Radio
               value="premium"
               label="Premium Template"
-              {...register("template")}
+              {...register('template')}
               disabled={isSubmitting}
             />
             <Radio
               value="custom"
               label="Custom Template"
-              {...register("template")}
+              {...register('template')}
               disabled={isSubmitting}
             />
           </div>
@@ -160,8 +156,8 @@ export default function CertificateForm() {
               </>
             ) : (
               <>
-                <span className="!text-black">Next Step</span>
-                <ArrowRight size={16} className="!text-black" />
+                <span className="text-black">Next Step</span>
+                <ChevronRight size={14} className="text-black" />
               </>
             )}
           </Button>
