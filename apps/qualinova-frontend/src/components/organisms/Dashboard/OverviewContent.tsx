@@ -1,9 +1,9 @@
 import React from "react";
 import { RefreshCcw, Search, FilePlus } from "lucide-react";
-import MetricsGrid from "../../molecules/MetricsGrid";
-import ChartContainer from "../../molecules/ChartContainer";
-import CertificateList from "../../molecules/CertificateList";
-import QuickActionsGrid from "../../molecules/QuickActionsGrid";
+import MetricsGrid from "@/components/molecules/MetricsGrid/MetricsGrid";
+import ChartContainer from "@/components/molecules/ChartContainer/ChartContainer";
+import CertificateList from "@/components/molecules/CertificateList/CertificateList";
+import QuickActionsGrid from "@/components/molecules/QuickActionsGrid/QuickActionsGrid";
 
 type CertificateStatus = "Verified" | "Pending" | "Expired";
 

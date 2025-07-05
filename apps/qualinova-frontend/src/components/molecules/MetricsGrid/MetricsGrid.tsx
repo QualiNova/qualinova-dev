@@ -1,5 +1,5 @@
 import React from "react";
-import MetricCard from "../../atoms/MetricCard";
+import MetricCard from "@/components/atoms/MetricCard/MetricCard";
 import { Award, FileCheck, Clock, FileX } from "lucide-react";
 
 interface MetricData {

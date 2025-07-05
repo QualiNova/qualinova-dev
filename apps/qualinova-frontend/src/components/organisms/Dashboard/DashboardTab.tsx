@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
-import TabButton from "../../atoms/TabButton";
+import TabButton from "@/components/atoms/TabButton/TabButton";
 
 // Define the tab types
 type TabType = "overview" | "analytics" | "reports";

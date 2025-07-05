@@ -1,6 +1,6 @@
 import React from "react";
 import { FileCheck, Clock, FileX } from "lucide-react";
-import StatusBadge from "../../atoms/StatusBadge";
+import StatusBadge from "@/components/atoms/StatusBadge/StatusBadge";
 
 type CertificateStatus = "Verified" | "Pending" | "Expired";
 
