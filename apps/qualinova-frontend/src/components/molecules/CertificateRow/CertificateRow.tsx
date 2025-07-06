@@ -1,10 +1,11 @@
-import StatusBadge from "@/components/atoms/StatusBadge/StatusBadge";
+import StatusBadge from '@/components/atoms/StatusBadge/StatusBadge';
+import { FileText } from 'lucide-react';
 
 const CertificateRow = ({ cert }: { cert: any }) => (
-  <tr className="space-x-3 border-[#20293c] *: *:py-5 border-t">
+  <tr className="space-x-3 border-dark-blue-border *: *:py-5 border-t">
     <td>{cert.id}</td>
     <td className="flex items-center gap-2">
-      {/* <Icon src="/cert.svg" alt="certLogo" width={15} height={40} /> */}
+      <FileText className="h-4 w-4 text-dark-blue-text" />
       {cert.name}
     </td>
     <td>{cert.recipient}</td>

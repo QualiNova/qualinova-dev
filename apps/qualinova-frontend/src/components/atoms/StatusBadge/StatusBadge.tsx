@@ -1,16 +1,29 @@
+import { CircleCheckBig, CircleX, Clock4 } from 'lucide-react';
+
 const StatusBadge = ({ status }: { status: string }) => {
-  const base = "px-2 py-1 font-bold rounded-xl text-xs";
+  const base = 'px-2 py-1 font-medium rounded-xl text-xs flex items-center justify-center gap-1';
   switch (status) {
-    case "Active":
+    case 'Verified':
       return (
-        <div className={`${base} text-[#256532] bg-[#dffce6]`}>{status}</div>
+        <div className={`${base} text-success-dark bg-success-light`}>
+          <CircleCheckBig className="h-4 w-4" />
+          {status}
+        </div>
       );
-    case "Pending":
+    case 'Pending':
       return (
-        <div className={`${base} text-[#923208] bg-[#dbcdb8]`}>{status}</div>
+        <div className={`${base} text-error-dark bg-error-light`}>
+          <Clock4 className="h-4 w-4" />
+          {status}
+        </div>
       );
-    case "Expired":
-      return <div className={`${base} text-white bg-[#256532]`}>{status}</div>;
+    case 'Expired':
+      return (
+        <div className={`${base} text-white bg-error-dark`}>
+          <CircleX className="h-4 w-4" />
+          {status}
+        </div>
+      );
     default:
       return <div className={base}>{status}</div>;
   }

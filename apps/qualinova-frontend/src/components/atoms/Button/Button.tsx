@@ -27,7 +27,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const variants = {
       primary:
         'bg-gray-text-50 text-black-text rounded-md gap-2 font-medium disabled:cursor-not-allowed',
-      secondary: 'bg-secondary-button-bg text-black-text rounded-md font-medium',
+      secondary: 'bg-secondary-button-bg text-black-text rounded-md font-medium gap-4',
       outline:
         'border border-gray-border-800 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed',
       plain: '!p-0 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-100',
