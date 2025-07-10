@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import VerifyWithId from "@/components/organisms/verify/verifyWithId/VerifyWithId";
-import VerifyWithQr from "@/components/organisms/verify/verifyWithQr/VerifyWithQr";
+import VerifyWithId from "@/components/organisms/Verify/VerifyWithId/VerifyWithId";
+import VerifyWithQr from "@/components/organisms/Verify/VerifyWithQr/VerifyWithQr";
 
 const page = () => {
   const //
