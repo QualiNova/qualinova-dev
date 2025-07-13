@@ -11,7 +11,7 @@ export default function Radio({ className, label, ...props }: RadioProps) {
       <input
         type="radio"
         className={cn(
-          'h-4 w-4 sm:h-5 sm:w-5 text-primary border-input transition-all duration-150 accent-white',
+          'h-4 w-4 sm:h-5 sm:w-5 text-primary border-input transition-all duration-150 accent-white focus:ring-primary',
           className
         )}
         {...props}

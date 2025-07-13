@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import FeatureCard from "@/components/atoms/Card/FeaturesCard";
+import React, { ReactNode } from 'react';
+import FeatureCard from '@/components/atoms/Card/FeatureCard';
 
 interface Feature {
   title: string;
@@ -16,22 +16,16 @@ interface KeyFeaturesProps {
 }
 
 const KeyFeatures: React.FC<KeyFeaturesProps> = ({
-  title = "Key Features",
-  subtitle = "Our platform offers a comprehensive suite of tools for certification management",
+  title = 'Key Features',
+  subtitle = 'Our platform offers a comprehensive suite of tools for certification management',
   features,
 }) => {
   const featuresData = [
     {
-      title: "Secure Certification",
-      description:
-        "Create tamper-proof certificates backed by blockchain technology",
+      title: 'Secure Certification',
+      description: 'Create tamper-proof certificates backed by blockchain technology',
       icon: (
-        <svg
-          className="w-6 h-6"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
             stroke="currentColor"
@@ -55,19 +49,14 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
           />
         </svg>
       ),
-      iconBgColor: "bg-blue-900/50",
-      iconTextColor: "text-blue-400",
+      iconBgColor: 'bg-blue-900/50',
+      iconTextColor: 'text-blue-400',
     },
     {
-      title: "Instant Verification",
-      description: "Verify certificates instantly using ID or QR code scanning",
+      title: 'Instant Verification',
+      description: 'Verify certificates instantly using ID or QR code scanning',
       icon: (
-        <svg
-          className="w-6 h-6"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999"
             stroke="currentColor"
@@ -84,20 +73,14 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
           />
         </svg>
       ),
-      iconBgColor: "bg-green-900/50",
-      iconTextColor: "text-green-400",
+      iconBgColor: 'bg-green-900/50',
+      iconTextColor: 'text-green-400',
     },
     {
-      title: "Comprehensive Management",
-      description:
-        "Manage all your certifications in one centralized dashboard",
+      title: 'Comprehensive Management',
+      description: 'Manage all your certifications in one centralized dashboard',
       icon: (
-        <svg
-          className="w-6 h-6"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M9 3H5C3.89543 3 3 3.89543 3 5V9C3 10.1046 3.89543 11 5 11H9C10.1046 11 11 10.1046 11 9V5C11 3.89543 10.1046 3 9 3Z"
             stroke="currentColor"
@@ -135,8 +118,8 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
           />
         </svg>
       ),
-      iconBgColor: "bg-teal-900/50",
-      iconTextColor: "text-teal-400",
+      iconBgColor: 'bg-teal-900/50',
+      iconTextColor: 'text-teal-400',
     },
   ];
 
@@ -147,9 +130,7 @@ const KeyFeatures: React.FC<KeyFeaturesProps> = ({
     <section className="bg-gray-900 pt-[12%] px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            {title}
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{title}</h2>
           <p className="max-w-2xl text-xl leading-7 font-normal text-[#9CA3AF] mx-auto">
             {subtitle}
           </p>
