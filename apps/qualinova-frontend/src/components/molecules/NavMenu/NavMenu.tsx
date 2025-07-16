@@ -28,13 +28,20 @@ const NavMenu = () => {
       </div>
 
       {/* Mobile Menu Button */}
-      <button className="absolute md:hidden p-2 right-5" onClick={toggleMenu}>
+      <button
+        className="absolute md:hidden p-2 right-5"
+        onClick={toggleMenu}
+        data-testid="mobile-menu-button"
+      >
         {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden mt-4 mr-auto ml-10 flex flex-col space-y-4">
+        <div
+          className="md:hidden mt-4 mr-auto ml-10 flex flex-col space-y-4"
+          data-testid="mobile-menu"
+        >
           <NavLink href="/">Home</NavLink>
           <NavLink href="/dashboard">Dashboard</NavLink>
           <NavLink href="/create-certificate">Create Certificate</NavLink>
