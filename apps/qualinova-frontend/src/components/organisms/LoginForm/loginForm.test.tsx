@@ -245,7 +245,7 @@ describe("LoginForm Component", () => {
     // Set up mock to only show password error
     const mockUseForm = require('react-hook-form').useForm();
     mockUseForm.__setErrors({
-      email: { message: "Email is required" }
+      email: { message: "Password is required" }
     });
 
     renderWithProviders(<LoginForm />);
