@@ -50,6 +50,7 @@ const RegisterForm = () => {
               {...register("firstName")}
               error={errors.firstName?.message}
               className="bg-[#09090B] border-[#27272A] text-white"
+              data-testid="first-name-input"
             />
             <Input
               label="Last name"
@@ -57,6 +58,7 @@ const RegisterForm = () => {
               {...register("lastName")}
               error={errors.lastName?.message}
               className="bg-[#09090B] border-[#27272A] text-white"
+              data-testid="last-name-input"
             />
           </div>
 
@@ -71,12 +73,13 @@ const RegisterForm = () => {
               {...register("email")}
               error={errors.email?.message}
               className="bg-[#09090B] border-[#27272A] text-white"
+              data-testid="email-input"
             />
           </div>
 
           <div className="space-y-1.5">
             <div className="flex justify-between">
-              <label className="block text-sm font-medium text-white">
+              <label className="block text-sm font-medium text-white" data-testid="password-label">
                 Password
               </label>
             </div>
@@ -85,9 +88,10 @@ const RegisterForm = () => {
               {...register("password")}
               error={errors.password?.message}
               className="bg-[#09090B] border-[#27272A] text-white"
+              data-testid="password-input"
             />
             <p className="text-[#A1A1AA] text-xs leading-4">
-              Password must be at least 8 characters long
+              Choose a strong password, at least 8 characters long
             </p>
           </div>
 
@@ -113,6 +117,7 @@ const RegisterForm = () => {
               }
               {...register("terms")}
               error={errors.terms?.message}
+              data-testid='checkbox-terms'
             />
           </div>
 
@@ -121,6 +126,7 @@ const RegisterForm = () => {
             fullWidth
             disabled={!isValid}
             className="rounded-md bg-[#2563EB] hover:bg-[#2563EB]/90 text-white py-2.5 disabled:bg-[#2563EB] disabled:opacity-100"
+            data-testid="create-account-button"
           >
             <p className="text-sm leading-5 text-white font-medium">
               Create Account
@@ -141,7 +147,7 @@ const RegisterForm = () => {
           >
             <Image
               src={githubIcon}
-              alt=""
+              alt="github icon"
               width={20}
               height={20}
               className="mr-2"
@@ -155,6 +161,7 @@ const RegisterForm = () => {
               <Link
                 className="text-sm hover:underline text-[#2563EB]"
                 href="/login"
+                data-testid="login-link"
               >
                 Sign in
               </Link>

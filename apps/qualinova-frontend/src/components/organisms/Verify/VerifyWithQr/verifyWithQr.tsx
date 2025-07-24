@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const VerifyWithQr = () => {
   return (
-    <div className=" space-y-10 rounded-lg p-6 border-2 border-[#1c2537]">
+    <div className=" space-y-10 rounded-lg p-6 border-2 border-[#1c2537]" data-testid="verify-with-qr-container">
       {/* text */}
       <div>
         <div className="text-3xl font-bold">Scan QR Code</div>
@@ -13,7 +13,7 @@ const VerifyWithQr = () => {
       </div>
       {/* qr */}
       <div className="flex p-10 rounded-lg space-y-5 flex-col items-center justify-center">
-        <div className="flex p-10 rounded-lg flex-col items-center border-dashed border-2 border-[#1c2537]">
+        <div className="flex p-10 rounded-lg flex-col items-center border-dashed border-2 border-[#1c2537]" data-testid='qr-image-container'>
           <Image alt="qr code" src="QR.svg" width={90} height={90}></Image>
           <div className="flex flex-col space-y-4 items-center">
             <div className="text-2xl ">QR Code Scanner</div>

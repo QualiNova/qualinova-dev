@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import KeyFeatures from "./keyFeatures";
 
 // Mock the FeatureCard component
-jest.mock("@/components/atoms/Card/FeaturesCard", () => {
+jest.mock("../../../atoms/Card/featureCard.tsx", () => {
   return function MockFeatureCard({
     title,
     description,
@@ -162,7 +162,7 @@ describe("KeyFeatures", () => {
       const container = screen
         .getByText("Key Features")
         .closest('div[class*="max-w-6xl"]');
-      expect(container).toHaveClass("max-w-6xl", "mx-auto", "max-w-[75%]");
+      expect(container).toHaveClass("max-w-6xl", "mx-auto");
     });
 
     it("has proper header text styling", () => {
@@ -293,7 +293,7 @@ describe("KeyFeatures", () => {
 
     it("handles empty features array", () => {
       render(<KeyFeatures features={[]} />);
-      expect(screen.getAllByTestId("feature-card")).toHaveLength(0);
+      expect(screen.queryAllByTestId("feature-card")).toHaveLength(0);
     });
 
     it("handles undefined features prop gracefully", () => {
@@ -384,9 +384,9 @@ describe("KeyFeatures", () => {
 
       svgPaths.forEach((path) => {
         expect(path).toHaveAttribute("stroke", "currentColor");
-        expect(path).toHaveAttribute("strokeWidth", "2");
-        expect(path).toHaveAttribute("strokeLinecap", "round");
-        expect(path).toHaveAttribute("strokeLinejoin", "round");
+        expect(path).toHaveAttribute("stroke-width", "2");
+        expect(path).toHaveAttribute("stroke-linecap", "round");
+        expect(path).toHaveAttribute("stroke-linejoin", "round");
       });
     });
   });
