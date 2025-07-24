@@ -72,7 +72,8 @@ describe("AuditRow", () => {
   });
 
   it("applies correct button styling", () => {
-    renderWithTable(<AuditRow audit={mockAudit} />);
+    render(<AuditRow audit={mockAudit} />);
+
     const button = screen.getByRole("button", { name: /view details/i });
 
     expect(button).toHaveClass(
@@ -83,7 +84,11 @@ describe("AuditRow", () => {
       "px-3",
       "py-2",
       "bg-[#1E293B]",
-      "rounded-lg",
+      "hover:bg-[#334155]",
+      "rounded-xl",
+      "transition-colors",
+      "border",
+      "border-[#334155]",
       "text-[#F8FAFC]",
       "text-sm"
     );

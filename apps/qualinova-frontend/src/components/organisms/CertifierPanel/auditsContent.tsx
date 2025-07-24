@@ -1,8 +1,18 @@
 import React, { useState } from "react";
-import { Search, Funnel, RefreshCw } from "lucide-react";
+import {
+  Search,
+  Funnel,
+  RefreshCw,
+  User,
+  Building2,
+  Calendar,
+  FileText,
+} from "lucide-react";
+
 import Button from "@/components/atoms/Button/button";
 import Select from "@/components/atoms/Select/select";
 import AuditsTable from "@/components/organisms/AuditsTable/auditsTable";
+import StatsCards from "@/components/organisms/StatsCards/statsCards";
 
 enum AuditStatus {
   Completed = "Completed",
@@ -90,6 +100,18 @@ const AuditsContent = () => {
     "Sort by Company": (msg: string) => console.log(msg),
   };
 
+  // Calculate statistics
+  const totalAudits = audits.length;
+  const pendingAudits = audits.filter(
+    (audit) => audit.status === AuditStatus.Pending
+  ).length;
+  const inProcessAudits = audits.filter(
+    (audit) => audit.status === AuditStatus.InProcess
+  ).length;
+  const completedAudits = audits.filter(
+    (audit) => audit.status === AuditStatus.Completed
+  ).length;
+
   return (
     <div className="p-4 sm:p-5 space-y-4">
       {/* Header */}
@@ -99,6 +121,55 @@ const AuditsContent = () => {
           <span className="mr-2 text-lg font-bold">+</span>
           <span>Assign New Audit</span>
         </Button>
+      </div>
+
+      {/* Statistics Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatsCards
+          title="Total Audits"
+          count={totalAudits}
+          subtitle="Registered audits"
+          iconColor="text-[#2563EB]"
+          Icon={FileText}
+        />
+        <StatsCards
+          title="Pending"
+          count={pendingAudits}
+          subtitle="Not started"
+          iconColor="text-[#F59E0B]"
+          Icon={Calendar}
+        />
+
+        <StatsCards
+          title="In Process"
+          count={inProcessAudits}
+          subtitle="In progress"
+          iconColor="text-[#3B82F6]"
+          Icon={User}
+        />
+
+        <StatsCards
+          title="Completed"
+          count={completedAudits}
+          subtitle="Finished"
+          iconColor="text-[#10B981]"
+          Icon={Building2}
+        />
+
+        {/* <div className=" roended-lg p-4 border border-[#1E293B]">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-[#94A3B8] text-sm">Completed</p>
+              <h3 className="text-white text-2xl font-semibold">
+                {completedAudits}
+              </h3>
+              <p className="text-[#94A3B8] text-xs">Finished</p>
+            </div>
+            <div className="text-[#10B981]">
+              <Building2 size={20} />
+            </div>
+          </div>
+        </div> */}
       </div>
 
       {/* Management Panel */}
@@ -139,21 +210,8 @@ const AuditsContent = () => {
               </Select>
             </div>
 
-            <div className="flex border h-10 border-dark-blue-border rounded-lg items-center px-3 gap-2 w-full sm:w-auto">
-              <Funnel className="text-xs h-5 w-5" />
-              <Select
-                onChange={(e) => {
-                  const key = e.target.value as SortOption;
-                  sort[key](key + " from sort function");
-                }}
-                className="w-full sm:w-40 appearance-none border-none focus-visible:ring-0 focus:outline-none bg-inherit hover:cursor-pointer"
-              >
-                {Object.keys(sort).map((key) => (
-                  <option key={key} value={key} className="text-black text-xs">
-                    {key}
-                  </option>
-                ))}
-              </Select>
+            <div className="flex h-10 border border-dark-blue-border rounded-lg items-center px-3 hover:cursor-pointer">
+              <RefreshCw className="text-xs h-5 w-5" />
             </div>
           </div>
         </div>

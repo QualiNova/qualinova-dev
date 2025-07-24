@@ -67,19 +67,30 @@ describe("AuditsTable", () => {
 
   it("applies correct styling classes", () => {
     const { container } = render(<AuditsTable audits={mockAudits} />);
-    const tableContainer = container.querySelector("div");
-    const table = container.querySelector("table");
 
-    expect(tableContainer).toHaveClass(
+    // Main wrapper
+    const mainWrapper = container.querySelector("div");
+    expect(mainWrapper).toHaveClass("w-full");
+
+    // Desktop table container
+    const desktopContainer = container.querySelector("div.hidden.md\\:flex");
+    expect(desktopContainer).toHaveClass(
+      "hidden",
+      "md:flex",
       "border-2",
       "border-dark-blue-border",
-      "flex",
       "justify-center",
       "rounded-lg",
-      "p-4",
-      "w-full"
+      "p-4"
     );
+
+    // Table
+    const table = container.querySelector("table");
     expect(table).toHaveClass("table-auto", "w-3/4", "border-collapse");
+
+    // Mobile container
+    const mobileContainer = container.querySelector("div.md\\:hidden");
+    expect(mobileContainer).toHaveClass("md:hidden", "space-y-4");
   });
 
   it("renders table head with correct styling", () => {
