@@ -2,7 +2,6 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import HowItWorks from "./howItWorks";
-import { get } from "http";
 
 // Mock Next.js router if needed
 jest.mock("next/router", () => ({
