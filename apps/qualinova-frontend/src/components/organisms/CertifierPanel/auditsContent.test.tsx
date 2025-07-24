@@ -52,8 +52,12 @@ jest.mock("../AuditsTable/auditsTable", () => {
 });
 
 jest.mock("../StatsCards/statsCards", () => {
-  return function MockStatsCards() {
-    return <div data-testid="stats-cards-container">Stats Cards Container</div>;
+  return function MockStatsCards({ title, count, subtitle }: any) {
+    return (
+      <div data-testid="stats-card">
+        {title} - {count} - {subtitle}
+      </div>
+    );
   };
 });
 
@@ -79,9 +83,13 @@ describe("AuditsContent", () => {
   it("renders stats cards component", () => {
     render(<AuditsContent />);
 
-    // Just check that the component renders without errors
-    // The stats cards are present in the grid layout
-    expect(screen.getByText("Audits")).toBeInTheDocument();
+    // Check that the stats cards are rendered (there should be 4 individual cards)
+    const statsCards = screen.getAllByTestId("stats-card");
+    expect(statsCards).toHaveLength(4);
+
+    // Check some of the content
+    expect(screen.getByText(/Total Audits/)).toBeInTheDocument();
+    expect(screen.getByText(/Pending/)).toBeInTheDocument();
   });
 
   it("renders the management panel section", () => {

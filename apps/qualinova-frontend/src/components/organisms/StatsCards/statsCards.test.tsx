@@ -13,136 +13,117 @@ jest.mock("lucide-react", () => ({
 }));
 
 describe("StatsCards", () => {
-  const mockMetrics = [
-    {
-      title: "Total Audits",
-      count: 6,
-      subtitle: "Registered audits",
-      iconColor: "text-[#2563EB]",
-      Icon: Users,
-    },
-    {
+  const mockProps = {
+    title: "Total Audits",
+    count: 6,
+    subtitle: "Registered audits",
+    iconColor: "text-[#2563EB]",
+    Icon: Users,
+  };
+
+  it("renders the metric card correctly", () => {
+    render(<StatsCards {...mockProps} />);
+
+    // Check if the metric title is rendered
+    expect(screen.getByText("Total Audits")).toBeInTheDocument();
+  });
+
+  it("displays correct count", () => {
+    render(<StatsCards {...mockProps} />);
+
+    // Check if the count is displayed
+    expect(screen.getByText("6")).toBeInTheDocument();
+  });
+
+  it("displays correct subtitle", () => {
+    render(<StatsCards {...mockProps} />);
+
+    // Check if the subtitle is rendered
+    expect(screen.getByText("Registered audits")).toBeInTheDocument();
+  });
+
+  it("renders icon correctly", () => {
+    render(<StatsCards {...mockProps} />);
+
+    // Check if the icon is rendered
+    expect(screen.getByTestId("users-icon")).toBeInTheDocument();
+  });
+
+  it("applies correct styling classes", () => {
+    const { container } = render(<StatsCards {...mockProps} />);
+
+    // Check if the card container has correct classes
+    const cardContainer = container.querySelector("div");
+    expect(cardContainer).toHaveClass(
+      "rounded-lg",
+      "p-4",
+      "border",
+      "border-[#1E293B]"
+    );
+  });
+
+  it("applies correct icon color", () => {
+    const { container } = render(<StatsCards {...mockProps} />);
+
+    // Check if icon container has correct color class
+    const iconContainer = container.querySelector("div[class*='text-[#']");
+    expect(iconContainer).toHaveClass("text-[#2563EB]");
+  });
+
+  it("renders with correct component structure", () => {
+    const { container } = render(<StatsCards {...mockProps} />);
+
+    // Check if the card has the correct structure
+    const card = container.querySelector("div");
+    expect(card).toHaveClass("rounded-lg", "p-4", "border", "border-[#1E293B]");
+
+    // Check for flex container - it's the direct child div inside the card
+    const flexContainer = card?.querySelector("div");
+    expect(flexContainer).toHaveClass("flex", "justify-between", "items-start");
+  });
+
+  it("handles different icon types correctly", () => {
+    const clockProps = {
+      ...mockProps,
       title: "Pending",
       count: 2,
       subtitle: "Not started",
       iconColor: "text-[#F59E0B]",
       Icon: Clock,
-    },
-    {
-      title: "In Process",
-      count: 1,
-      subtitle: "In progress",
-      iconColor: "text-[#3B82F6]",
-      Icon: AlertTriangle,
-    },
-    {
-      title: "Completed",
-      count: 2,
-      subtitle: "Finished",
-      iconColor: "text-[#10B981]",
-      Icon: CheckCircle,
-    },
-  ];
+    };
 
-  it("renders all metric cards correctly", () => {
-    render(<StatsCards metrics={mockMetrics} />);
+    render(<StatsCards {...clockProps} />);
 
-    // Check if all metric titles are rendered
-    expect(screen.getByText("Total Audits")).toBeInTheDocument();
     expect(screen.getByText("Pending")).toBeInTheDocument();
-    expect(screen.getByText("In Process")).toBeInTheDocument();
-    expect(screen.getByText("Completed")).toBeInTheDocument();
-  });
-
-  it("displays correct counts for each metric", () => {
-    render(<StatsCards metrics={mockMetrics} />);
-
-    // Check if all counts are displayed
-    expect(screen.getByText("6")).toBeInTheDocument();
-    expect(screen.getAllByText("2")).toHaveLength(2); // Pending and Completed both have count 2
-    expect(screen.getByText("1")).toBeInTheDocument();
-  });
-
-  it("displays correct subtitles for each metric", () => {
-    render(<StatsCards metrics={mockMetrics} />);
-
-    // Check if all subtitles are rendered
-    expect(screen.getByText("Registered audits")).toBeInTheDocument();
+    expect(screen.getByText("2")).toBeInTheDocument();
     expect(screen.getByText("Not started")).toBeInTheDocument();
-    expect(screen.getByText("In progress")).toBeInTheDocument();
-    expect(screen.getByText("Finished")).toBeInTheDocument();
-  });
-
-  it("renders all icons correctly", () => {
-    render(<StatsCards metrics={mockMetrics} />);
-
-    // Check if all icons are rendered
-    expect(screen.getByTestId("users-icon")).toBeInTheDocument();
     expect(screen.getByTestId("clock-icon")).toBeInTheDocument();
-    expect(screen.getByTestId("alert-triangle-icon")).toBeInTheDocument();
-    expect(screen.getByTestId("check-circle-icon")).toBeInTheDocument();
   });
 
-  it("applies correct styling classes", () => {
-    const { container } = render(<StatsCards metrics={mockMetrics} />);
+  it("handles different count values", () => {
+    const zeroCountProps = {
+      ...mockProps,
+      count: 0,
+    };
 
-    // Check if the grid container has correct classes
-    const gridContainer = container.querySelector("div");
-    expect(gridContainer).toHaveClass(
-      "grid",
-      "grid-cols-1",
-      "sm:grid-cols-2",
-      "lg:grid-cols-4",
-      "gap-4"
-    );
+    render(<StatsCards {...zeroCountProps} />);
+
+    expect(screen.getByText("0")).toBeInTheDocument();
   });
 
-  it("renders correct number of metric cards", () => {
-    render(<StatsCards metrics={mockMetrics} />);
+  it("applies correct text styling classes", () => {
+    const { container } = render(<StatsCards {...mockProps} />);
 
-    // Count the number of metric cards
-    const metricCards = screen.getAllByText(
-      /Total Audits|Pending|In Process|Completed/
-    );
-    expect(metricCards).toHaveLength(4);
-  });
+    // Check title styling
+    const title = screen.getByText("Total Audits");
+    expect(title).toHaveClass("text-[#94A3B8]", "text-sm");
 
-  it("handles empty metrics array", () => {
-    render(<StatsCards metrics={[]} />);
+    // Check count styling
+    const count = screen.getByText("6");
+    expect(count).toHaveClass("text-white", "text-2xl", "font-semibold");
 
-    // Should render the grid container but no cards
-    const { container } = render(<StatsCards metrics={[]} />);
-    const gridContainer = container.querySelector("div");
-    expect(gridContainer).toBeInTheDocument();
-    expect(gridContainer?.children).toHaveLength(0);
-  });
-
-  it("applies correct icon colors", () => {
-    const { container } = render(<StatsCards metrics={mockMetrics} />);
-
-    // Check if icon containers have correct color classes
-    const iconContainers = container.querySelectorAll("div[class*='text-[#']");
-    expect(iconContainers[0]).toHaveClass("text-[#2563EB]");
-    expect(iconContainers[1]).toHaveClass("text-[#F59E0B]");
-    expect(iconContainers[2]).toHaveClass("text-[#3B82F6]");
-    expect(iconContainers[3]).toHaveClass("text-[#10B981]");
-  });
-
-  it("renders metric cards with correct structure", () => {
-    const { container } = render(<StatsCards metrics={mockMetrics} />);
-
-    // Check if each card has the correct structure
-    const cards = container.querySelectorAll("div[class*='bg-[#1E293B]']");
-    expect(cards).toHaveLength(4);
-
-    cards.forEach((card) => {
-      expect(card).toHaveClass(
-        "bg-[#1E293B]",
-        "rounded-lg",
-        "p-4",
-        "border",
-        "border-[#1E293B]"
-      );
-    });
+    // Check subtitle styling
+    const subtitle = screen.getByText("Registered audits");
+    expect(subtitle).toHaveClass("text-[#94A3B8]", "text-xs");
   });
 });
