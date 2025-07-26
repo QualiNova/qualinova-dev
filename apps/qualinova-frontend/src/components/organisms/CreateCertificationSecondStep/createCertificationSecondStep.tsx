@@ -43,12 +43,12 @@ export default function CreateCertificationSecondStep() {
     >
       <div className="w-full">
         <div className="w-full flex items-center justify-between gap-5">
-          <h3 className="text-gray-text-50 font-semibold text-sm lg:text-2xl">
+          <h3 data-testid="step-title" className="text-gray-text-50 font-semibold text-sm lg:text-2xl">
             Certificate Details
           </h3>
           <StepIndicator currentStep={2} totalSteps={3} />
         </div>
-        <p className="mt-[6px] text-gray-text-400 font-normal text-xs lg:text-sm">
+        <p data-testid="form-title" className="mt-[6px] text-gray-text-400 font-normal text-xs lg:text-sm">
           Add recipient and validity details
         </p>
       </div>
@@ -98,7 +98,7 @@ export default function CreateCertificationSecondStep() {
             label="Certificate ID (Optional)"
             {...register('certificateId')}
           />
-          <p className="text-gray-text-400 font-normal text-[10px] lg:text-xs">
+          <p data-testid="identifier-text" className="text-gray-text-400 font-normal text-[10px] lg:text-xs">
             A unique identifier will be automatically generated if left blank
           </p>
         </label>

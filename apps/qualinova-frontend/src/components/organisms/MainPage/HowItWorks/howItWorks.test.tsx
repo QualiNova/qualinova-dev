@@ -88,8 +88,10 @@ describe("HowItWorks", () => {
   describe("ProcessStep Component", () => {
     it("renders step numbers with proper styling", () => {
       const stepNumbers = screen.getAllByText(/[1-3]/);
+    
       stepNumbers.forEach((number) => {
-        expect(number.parentElement).toHaveClass(
+        const stepContainer = number.closest('div');
+        expect(stepContainer).toHaveClass(
           "bg-blue-500",
           "rounded-full",
           "w-10",
@@ -99,9 +101,15 @@ describe("HowItWorks", () => {
           "justify-center",
           "text-white",
           "font-bold",
+          "mb-4"
         );
       });
-    });
+
+      // Verify the specific numbers are present
+      expect(stepNumbers[0]).toHaveTextContent("1");
+      expect(stepNumbers[1]).toHaveTextContent("2");
+      expect(stepNumbers[2]).toHaveTextContent("3");
+  });
 
     it("renders step titles with proper styling", () => {
       const stepTitles = [
@@ -214,14 +222,12 @@ describe("HowItWorks", () => {
 
     it("has proper padding and margins", () => {
       const howItWorksSection = screen
-        .getByText("How It Works")
-        .closest("section");
+        .getByTestId('how-it-works-section');
       const getStartedSection = screen
-        .getByText("Ready to Get Started?")
-        .closest("section");
+        .getByTestId('getting-started-section');
 
       expect(howItWorksSection).toHaveClass("pt-[12%]", "pb-[12%]");
-      expect(getStartedSection).toHaveClass("py-[8%]");
+      expect(getStartedSection).toHaveClass("py-16");
     });
   });
 

@@ -47,7 +47,7 @@ const HowItWorks: React.FC = () => {
   return (
     <div className="flex flex-col">
       {/* How It Works Section */}
-      <section className="bg-gray-900 pt-[12%] pb-[12%]">
+      <section data-testid="how-it-works-section" className="bg-gray-900 pt-[12%] pb-[12%]">
         <div className="container mx-auto max-w-[75%]">
           <h2 className="text-white text-3xl font-bold text-center mb-2">
             How It Works
@@ -59,16 +59,19 @@ const HowItWorks: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ProcessStep
+              data-testid="step-1"
               number={1}
               title="Create Certificate"
               description="Fill out the certificate details and generate a new certification"
             />
             <ProcessStep
+              data-testid="step-2"
               number={2}
               title="Blockchain Registration"
               description="Certificate is registered on the Stellar blockchain with a unique identifier"
             />
             <ProcessStep
+              data-testid="step-3"
               number={3}
               title="Verify Anytime"
               description="Certificates can be verified instantly by anyone using our verification tool"
@@ -78,8 +81,8 @@ const HowItWorks: React.FC = () => {
       </section>
 
       {/* Get Started Section */}
-      <section className="bg-blue-900 py-16 flex-grow">
-        <div className="container mx-auto px-4 text-center">
+      <section data-testid="getting-started-section" className="bg-blue-900 py-16 flex-grow">
+        <div className="container mx-auto px-4 text-center max-w-[75%]">
           <h2 className="text-white text-3xl font-bold mb-2">
             Ready to Get Started?
           </h2>

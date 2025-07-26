@@ -18,7 +18,7 @@ jest.mock("next/image", () => ({
 }));
 
 // Mock NavMenu component
-jest.mock("@/components/molecules/NavMenu/NavMenu", () => {
+jest.mock("../../molecules/NavMenu/navMenu.tsx", () => {
   return function MockNavMenu() {
     return <div data-testid="nav-menu">Navigation Menu</div>;
   };
