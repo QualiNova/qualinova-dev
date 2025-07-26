@@ -1,11 +1,10 @@
 import { useState } from "react";
-import DashboardTabs from "./dashboardTab";
-import AnalyticsContent from "./analyticsContent";
-import OverviewContent from "./overviewContent";
-import ReportsContent from "./reportsContent";
+import DashboardTabs from "@/components/molecules/DashboardTabs/DashboardTabs";
+import AnalyticsContent from "@/components/organisms/AnalyticsContent/AnalyticsContent";
+import OverviewContent from "@/components/organisms/OverviewContent/OverviewContent";
+import ReportsContent from "@/components/organisms/ReportsContent/ReportsContent";
 import { RefreshCcw, PlusCircle, Menu } from "lucide-react";
-
-export type TabType = "overview" | "analytics" | "reports";
+import { TabType } from "@/types/dashboard";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<TabType>("analytics");
@@ -32,12 +31,10 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen text-white">
       <main className="container mx-auto px-4 py-4 sm:py-6 max-w-7xl">
-        {/* Header section */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-4">
           <div className="flex justify-between items-center w-full sm:w-auto">
             <h1 className="text-xl sm:text-2xl font-bold">Dashboard</h1>
 
-            {/* Mobile menu toggle */}
             <button
               className="sm:hidden p-1 rounded-md border border-[#1E293B] hover:bg-[#1E293B]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -46,7 +43,6 @@ const Dashboard = () => {
             </button>
           </div>
 
-          {/* Action buttons - hidden on mobile unless menu is open */}
           <div
             className={`${mobileMenuOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto`}
           >
@@ -61,15 +57,11 @@ const Dashboard = () => {
             </button>
           </div>
         </div>
-
-        {/* Tabs */}
         <DashboardTabs
           activeTab={activeTab}
           onTabChange={handleTabChange}
           className={`${mobileMenuOpen ? "block" : "hidden"} sm:block`}
         />
-
-        {/* Content section */}
         <div className="">
           <div className="min-w-full">{renderContent()}</div>
         </div>
