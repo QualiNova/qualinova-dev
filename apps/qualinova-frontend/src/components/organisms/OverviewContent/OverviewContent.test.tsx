@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import OverviewContent from './overviewContent';
+import OverviewContent from './OverviewContent';
 
 describe('OverviewContent', () => {
   it('renders metrics, chart, certificates, and quick actions', () => {
