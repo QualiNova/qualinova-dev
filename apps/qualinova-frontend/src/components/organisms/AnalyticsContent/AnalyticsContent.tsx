@@ -1,5 +1,3 @@
-// components/content/AnalyticsContent.tsx
-
 const AnalyticsContent = () => {
   return (
     <div className=" mt-4 rounded-md overflow-x-auto border border-[#1E293B]  ">

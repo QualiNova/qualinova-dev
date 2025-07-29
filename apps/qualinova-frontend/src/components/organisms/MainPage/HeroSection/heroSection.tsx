@@ -4,7 +4,7 @@ const HeroSection = () => {
       <main className="container mx-auto max-w-[75%] pt-[8%]">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-16">
           {/* Left Section - Content */}
-          <div className="w-full md:w-1/2 space-y-6">
+          <div className="w-full md:w-1/2 space-y-6" data-testid='left-section-container'>
             {/* Progress Bar */}
             <div className="mb-4">
               <div className="bg-[#1E3A8A] py-2 px-6 rounded-full w-full">
@@ -36,9 +36,9 @@ const HeroSection = () => {
           </div>
 
           {/* Right Section - Certificate Image */}
-          <div className="w-full md:w-1/2 flex justify-center items-center mt-8 md:mt-0">
-            <div className="bg-gray-800 rounded-lg w-full md:h-[600px] h-[400px] flex items-center justify-center">
-              <div className="text-gray-500">
+          <div className="w-full md:w-1/2 flex justify-center items-center mt-8 md:mt-0" data-testid='right-section-container'>
+            <div className="bg-gray-800 rounded-lg w-full md:h-[600px] h-[400px] flex items-center justify-center" data-testid="certificate-placeholder-container">
+              <div className="text-gray-500" data-testid="certificate-placeholder">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
