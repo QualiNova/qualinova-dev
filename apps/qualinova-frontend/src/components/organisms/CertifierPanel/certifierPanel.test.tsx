@@ -1,9 +1,23 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import { render, screen, fireEvent } from "@testing-library/react";
 import CertifierPanel from "./certifierPanel";
 
-// Mock AuditsContent component
+// Mock the child components
+jest.mock("@/components/molecules/CertifierTabs/certifierTabs", () => {
+  return function MockCertifierTabs({
+    activeTab,
+    onTabChange,
+  }: {
+    activeTab: string;
+    onTabChange: (tab: string) => void;
+  }) {
+    return (
+      <div data-testid="certifier-tabs">
+        <button onClick={() => onTabChange("audits")}>{activeTab}</button>
+      </div>
+    );
+  };
+});
+
 jest.mock("./auditsContent", () => {
   return function MockAuditsContent() {
     return <div data-testid="audits-content">Audits Content</div>;
@@ -11,33 +25,27 @@ jest.mock("./auditsContent", () => {
 });
 
 describe("CertifierPanel", () => {
-  it("renders successfully", () => {
+  it("renders the certifier panel with tabs and content", () => {
     render(<CertifierPanel />);
+
+    expect(screen.getByTestId("certifier-tabs")).toBeInTheDocument();
     expect(screen.getByTestId("audits-content")).toBeInTheDocument();
   });
 
-  it("renders AuditsContent component", () => {
+  it("displays audits content by default", () => {
     render(<CertifierPanel />);
 
-    // Check if AuditsContent is rendered
     expect(screen.getByTestId("audits-content")).toBeInTheDocument();
     expect(screen.getByText("Audits Content")).toBeInTheDocument();
   });
 
-  it("has correct component structure", () => {
-    const { container } = render(<CertifierPanel />);
+  it("handles tab changes correctly", () => {
+    render(<CertifierPanel />);
 
-    // The component should render without any wrapper elements
-    // since it just returns <AuditsContent />
-    expect(container.firstChild).toHaveAttribute(
-      "data-testid",
-      "audits-content"
-    );
-  });
+    const tabButton = screen.getByRole("button");
+    fireEvent.click(tabButton);
 
-  it("handles state initialization correctly", () => {
-    // Since the component is simplified and just renders AuditsContent,
-    // we test that it renders without errors
-    expect(() => render(<CertifierPanel />)).not.toThrow();
+    // Should still show audits content as it's the only tab
+    expect(screen.getByTestId("audits-content")).toBeInTheDocument();
   });
 });

@@ -108,3 +108,4 @@ const CertifierTabs = ({
 };
 
 export default CertifierTabs;
+export type { CertifierTabType };
