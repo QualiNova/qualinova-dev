@@ -59,7 +59,7 @@ describe('ThirdStepForm', () => {
   })
 
   it('renders certificate details correctly', () => {
-    render(<ThirdStepForm />); //TODO: Still buggy, fails here, due to useContext hook issues (I'm open to suggestions on how to fix this)
+    render(<ThirdStepForm />);
 
     // Headings
     expect(screen.getByText('Certificate Details')).toBeInTheDocument();

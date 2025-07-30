@@ -71,7 +71,7 @@ jest.mock('../../../contexts/createCertificateContext.tsx', () => ({
   }),
 }));
 
-describe('CreateCertificationSecondStep', () => { //TODO: This also fails cos of the useContext mock, need to fix (open to suggestions)
+describe('CreateCertificationSecondStep', () => {
   beforeEach(() => {
     updateDataMock.mockClear();
     setStepMock.mockClear();
