@@ -34,7 +34,7 @@
     "jest.config.js",
     "next-env.d.ts",
     ".next/types/**/*.ts"
-  ],
+, "jest.setup.js"  ],
   "exclude": [
     "node_modules",
     ".next"

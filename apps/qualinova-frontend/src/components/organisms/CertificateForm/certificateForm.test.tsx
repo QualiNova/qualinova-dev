@@ -1,7 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import CertificateForm from './certificateForm';
 import { useCreateCertificate } from '@/contexts/createCertificateContext';
+
 
 jest.mock('../../../contexts/createCertificateContext.tsx', () => ({
   useCreateCertificate: jest.fn(),
@@ -10,12 +11,7 @@ jest.mock('../../../contexts/createCertificateContext.tsx', () => ({
 const mockUpdateData = jest.fn();
 const mockSetStep = jest.fn();
 
-jest.mock('react-hook-form', () => ({
-    useForm: jest.fn(),
-    useFormContext: jest.fn(),
-}));
-
-const setup = () => { //TODO: Still buggy, fails here, tried another approach to mock useCreateCertificate context but still not working, there also seems to be an issue with useForm hook mock (open to fix suggestions)
+const setup = () => {
   (useCreateCertificate as jest.Mock).mockReturnValue({
     data: {
       name: '',
@@ -42,4 +38,24 @@ describe('CertificateForm', () => {
     expect(screen.getByText('Enter the basic certificate information')).toBeInTheDocument();
     expect(screen.getByText('Certificate Template')).toBeInTheDocument();
   });
+
+  it('renders all form fields correctly', () => {
+    setup();
+
+    expect(screen.getByLabelText('Certificate Name')).toBeInTheDocument();
+    expect(screen.getByLabelText('Certificate Type')).toBeInTheDocument();
+    expect(screen.getByLabelText('Description')).toBeInTheDocument();
+    expect(screen.getByLabelText('Standard Template')).toBeInTheDocument();
+    expect(screen.getByLabelText('Premium Template')).toBeInTheDocument();
+    expect(screen.getByLabelText('Custom Template')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Next Step/i })).toBeInTheDocument();
+  });
+
+  it('defaults to "standard" template radio selected', () => {
+    setup();
+
+    const standardRadio = screen.getByLabelText('Standard Template') as HTMLInputElement;
+    expect(standardRadio.checked).toBe(true);
+  });
+
 });
