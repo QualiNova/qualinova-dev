@@ -11,7 +11,7 @@ jest.mock("../../atoms/Button/button", () => {
     type,
     className,
     ...props
-  }: any) {
+  }: React.ComponentProps<"button"> & { variant?: string }) {
     return (
       <button
         data-testid="button"
@@ -27,7 +27,12 @@ jest.mock("../../atoms/Button/button", () => {
 });
 
 jest.mock("../../atoms/Select/select", () => {
-  return function MockSelect({ children, onChange, className, ...props }: any) {
+  return function MockSelect({
+    children,
+    onChange,
+    className,
+    ...props
+  }: React.ComponentProps<"select">) {
     return (
       <select
         data-testid="select"
@@ -42,7 +47,7 @@ jest.mock("../../atoms/Select/select", () => {
 });
 
 jest.mock("../AuditsTable/auditsTable", () => {
-  return function MockAuditsTable({ audits }: any) {
+  return function MockAuditsTable({ audits }: { audits: Array<unknown> }) {
     return (
       <div data-testid="audits-table">
         Audits Table - {audits.length} audits
@@ -51,11 +56,24 @@ jest.mock("../AuditsTable/auditsTable", () => {
   };
 });
 
-jest.mock("../StatsCards/statsCards", () => {
-  return function MockStatsCards({ title, count, subtitle }: any) {
+jest.mock("../AuditStats/auditStats", () => {
+  return function MockAuditStats({
+    totalAudits,
+    pendingAudits,
+    inProcessAudits,
+    completedAudits,
+  }: {
+    totalAudits: number;
+    pendingAudits: number;
+    inProcessAudits: number;
+    completedAudits: number;
+  }) {
     return (
-      <div data-testid="stats-card">
-        {title} - {count} - {subtitle}
+      <div data-testid="audit-stats">
+        <div>Total Audits: {totalAudits}</div>
+        <div>Pending: {pendingAudits}</div>
+        <div>In Process: {inProcessAudits}</div>
+        <div>Completed: {completedAudits}</div>
       </div>
     );
   };
@@ -80,16 +98,17 @@ describe("AuditsContent", () => {
     expect(screen.getByText("Assign New Audit")).toBeInTheDocument();
   });
 
-  it("renders stats cards component", () => {
+  it("renders audit statistics", () => {
     render(<AuditsContent />);
 
-    // Check that the stats cards are rendered (there should be 4 individual cards)
-    const statsCards = screen.getAllByTestId("stats-card");
-    expect(statsCards).toHaveLength(4);
+    // Check that the audit statistics are rendered with the mocked format
+    expect(screen.getByText("Total Audits: 6")).toBeInTheDocument();
+    expect(screen.getByText("Pending: 2")).toBeInTheDocument();
+    expect(screen.getByText("In Process: 1")).toBeInTheDocument();
+    expect(screen.getByText("Completed: 2")).toBeInTheDocument();
 
-    // Check some of the content
-    expect(screen.getByText(/Total Audits/)).toBeInTheDocument();
-    expect(screen.getByText(/Pending/)).toBeInTheDocument();
+    // Check that the audit stats component is rendered
+    expect(screen.getByTestId("audit-stats")).toBeInTheDocument();
   });
 
   it("renders the management panel section", () => {
@@ -184,7 +203,10 @@ describe("AuditsContent", () => {
     const select = screen.getByTestId("select");
     fireEvent.change(select, { target: { value: "Sort by Date" } });
 
-    expect(consoleSpy).toHaveBeenCalledWith("Sort by Date from sort function");
+    expect(consoleSpy).toHaveBeenCalledWith(
+      "Filter changed to:",
+      "Sort by Date"
+    );
 
     consoleSpy.mockRestore();
   });

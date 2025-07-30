@@ -1,18 +1,15 @@
 
 import { useState } from "react";
-// import CertifierTabs from "./certifierTabs";
+import CertifierTabs, {
+  CertifierTabType,
+} from "@/components/molecules/CertifierTabs/certifierTabs";
 import AuditsContent from "./auditsContent";
-// import { RefreshCcw, PlusCircle, Menu } from "lucide-react";
-
-export type CertifierTabType = "audits";
 
 const CertifierPanel = () => {
   const [activeTab, setActiveTab] = useState<CertifierTabType>("audits");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleTabChange = (tab: CertifierTabType) => {
     setActiveTab(tab);
-    setMobileMenuOpen(false);
   };
 
   const renderContent = () => {
@@ -24,7 +21,12 @@ const CertifierPanel = () => {
     }
   };
 
-  return <AuditsContent />;
+  return (
+    <div className="flex flex-col gap-6 p-6">
+      <CertifierTabs activeTab={activeTab} onTabChange={handleTabChange} />
+      <div className="flex-1">{renderContent()}</div>
+    </div>
+  );
 };
 
 export default CertifierPanel;

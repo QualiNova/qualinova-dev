@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 
 // Define the tab types
-type CertifierTabType = "audits";
+export type CertifierTabType = "audits";
 
 interface CertifierTabsProps {
   activeTab: CertifierTabType;
