@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import {
-  Search,
-  Funnel,
-  RefreshCw,
-  User,
-  Building2,
-  Calendar,
-  FileText,
-} from "lucide-react";
 
 import Button from "@/components/atoms/Button/button";
-import Select from "@/components/atoms/Select/select";
+import SearchBar from "@/components/molecules/SearchBar/searchBar";
+import FilterControls from "@/components/molecules/FilterControls/filterControls";
+import PaginationControls from "@/components/molecules/PaginationControls/paginationControls";
 import AuditsTable from "@/components/organisms/AuditsTable/auditsTable";
-import StatsCards from "@/components/organisms/StatsCards/statsCards";
+import AuditStats from "@/components/organisms/AuditStats/auditStats";
 
 enum AuditStatus {
   Completed = "Completed",
@@ -82,23 +75,18 @@ const initialAudits: Audit[] = [
   },
 ];
 
-type SortOption =
-  | "All Audits"
-  | "Sort by Date"
-  | "Sort by Status"
-  | "Sort by Company";
+const filterOptions = [
+  { value: "All Audits", label: "All Audits" },
+  { value: "Sort by Date", label: "Sort by Date" },
+  { value: "Sort by Status", label: "Sort by Status" },
+  { value: "Sort by Company", label: "Sort by Company" },
+];
 
 const AuditsContent = () => {
   const [audits, setAudits] = useState(initialAudits);
-  const [total, setTotal] = useState(initialAudits.length);
-  const [max, setMax] = useState(initialAudits.length);
-
-  const sort: Record<SortOption, (msg: string) => void> = {
-    "All Audits": (msg: string) => console.log(msg),
-    "Sort by Date": (msg: string) => console.log(msg),
-    "Sort by Status": (msg: string) => console.log(msg),
-    "Sort by Company": (msg: string) => console.log(msg),
-  };
+  const [searchTerm, setSearchTerm] = useState("");
+  const [total] = useState(initialAudits.length);
+  const [max] = useState(initialAudits.length);
 
   // Calculate statistics
   const totalAudits = audits.length;
@@ -112,6 +100,33 @@ const AuditsContent = () => {
     (audit) => audit.status === AuditStatus.Completed
   ).length;
 
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+    // TODO: Implement actual search logic
+    console.log("Searching for:", value);
+  };
+
+  const handleFilterChange = (value: string) => {
+    // TODO: Implement actual filter logic
+    console.log("Filter changed to:", value);
+  };
+
+  const handleRefresh = () => {
+    // TODO: Implement actual refresh logic
+    console.log("Refreshing data...");
+    setAudits(initialAudits);
+  };
+
+  const handlePrevious = () => {
+    // TODO: Implement pagination logic
+    console.log("Previous page");
+  };
+
+  const handleNext = () => {
+    // TODO: Implement pagination logic
+    console.log("Next page");
+  };
+
   return (
     <div className="p-4 sm:p-5 space-y-4">
       {/* Header */}
@@ -123,54 +138,13 @@ const AuditsContent = () => {
         </Button>
       </div>
 
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatsCards
-          title="Total Audits"
-          count={totalAudits}
-          subtitle="Registered audits"
-          iconColor="text-[#2563EB]"
-          Icon={FileText}
-        />
-        <StatsCards
-          title="Pending"
-          count={pendingAudits}
-          subtitle="Not started"
-          iconColor="text-[#F59E0B]"
-          Icon={Calendar}
-        />
-
-        <StatsCards
-          title="In Process"
-          count={inProcessAudits}
-          subtitle="In progress"
-          iconColor="text-[#3B82F6]"
-          Icon={User}
-        />
-
-        <StatsCards
-          title="Completed"
-          count={completedAudits}
-          subtitle="Finished"
-          iconColor="text-[#10B981]"
-          Icon={Building2}
-        />
-
-        {/* <div className=" roended-lg p-4 border border-[#1E293B]">
-          <div className="flex justify-between items-start">
-            <div>
-              <p className="text-[#94A3B8] text-sm">Completed</p>
-              <h3 className="text-white text-2xl font-semibold">
-                {completedAudits}
-              </h3>
-              <p className="text-[#94A3B8] text-xs">Finished</p>
-            </div>
-            <div className="text-[#10B981]">
-              <Building2 size={20} />
-            </div>
-          </div>
-        </div> */}
-      </div>
+      {/* Audit Statistics */}
+      <AuditStats
+        totalAudits={totalAudits}
+        pendingAudits={pendingAudits}
+        inProcessAudits={inProcessAudits}
+        completedAudits={completedAudits}
+      />
 
       {/* Management Panel */}
       <div className="border border-dark-blue-border p-4 space-y-5 rounded-lg">
@@ -183,37 +157,16 @@ const AuditsContent = () => {
 
         {/* Filter and Search */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <div className="h-10 px-2 w-full flex border border-dark-blue-border gap-2 rounded-lg items-center">
-            <Search className="text-dark-blue-text text-xs h-5 w-5" />
-            <input
-              type="search"
-              placeholder="Search by ID, company, certificate, or auditor..."
-              className="bg-inherit w-full focus:outline-none placeholder:text-sm"
-            />
-          </div>
-
-          <div className="flex h-10 items-center gap-2 w-full sm:w-auto">
-            <div className="flex border h-10 border-dark-blue-border rounded-lg items-center px-3 gap-2 w-full sm:w-auto">
-              <Funnel className="text-xs h-5 w-5" />
-              <Select
-                onChange={(e) => {
-                  const key = e.target.value as SortOption;
-                  sort[key](key + " from sort function");
-                }}
-                className="w-full sm:w-40 appearance-none border-none focus-visible:ring-0 focus:outline-none bg-inherit hover:cursor-pointer"
-              >
-                {Object.keys(sort).map((key) => (
-                  <option key={key} value={key} className="text-black text-xs">
-                    {key}
-                  </option>
-                ))}
-              </Select>
-            </div>
-
-            <div className="flex h-10 border border-dark-blue-border rounded-lg items-center px-3 hover:cursor-pointer">
-              <RefreshCw className="text-xs h-5 w-5" />
-            </div>
-          </div>
+          <SearchBar
+            placeholder="Search by ID, company, certificate, or auditor..."
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+          <FilterControls
+            options={filterOptions}
+            onFilterChange={handleFilterChange}
+            onRefresh={handleRefresh}
+          />
         </div>
 
         {/* Table */}
@@ -222,27 +175,13 @@ const AuditsContent = () => {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div className="text-dark-blue-text text-sm">
-            Showing {total} out of {max} audits
-          </div>
-          <div className="flex gap-4 w-full sm:w-auto">
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full sm:w-auto"
-            >
-              Previous
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              className="w-full sm:w-auto"
-            >
-              Next
-            </Button>
-          </div>
-        </div>
+        <PaginationControls
+          currentCount={total}
+          totalCount={max}
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          itemName="audits"
+        />
       </div>
     </div>
   );
