@@ -19,7 +19,7 @@ interface CreateCertificateContextProps {
   setStep?: Dispatch<SetStateAction<number>>;
 }
 
-const CreateCertificateContext =
+export const CreateCertificateContext =
   createContext<CreateCertificateContextProps | null>(null);
 
 function CreateCertificateProvider({

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { X, Menu } from 'lucide-react';
-import NavLink from '@/components/atoms/NavLink/navLink';
-import Button from '@/components/atoms/Button/button';
+import React, { useState } from "react";
+import { X, Menu } from "lucide-react";
+import NavLink from "@/components/atoms/NavLink/navLink";
+import Button from "@/components/atoms/Button/button";
 
 const NavMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +19,9 @@ const NavMenu = () => {
         <NavLink href="/create-certificate">Create Certificate</NavLink>
         <NavLink href="/verify">Verify</NavLink>
         <NavLink href="/certificate">Certificates</NavLink>
+
         <NavLink href="/certifier-panel">Certifier Panel</NavLink>
+        <NavLink href="/help">Help</NavLink>
       </div>
 
       {/* Desktop Buttons */}
@@ -49,6 +51,7 @@ const NavMenu = () => {
           <NavLink href="/verify">Verify</NavLink>
           <NavLink href="/certificate">Certificates</NavLink>
           <NavLink href="/certifier-panel">Certifier Panel</NavLink>
+          <NavLink href="/help">Help</NavLink>
           <div className="text-white space-y-4 flex flex-col">
             <button>Sign In</button>
             <button className="bg-[#2563EB] text-black px-3 py-2 rounded-sm hover:opacity-80">
