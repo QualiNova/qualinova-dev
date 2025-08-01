@@ -49,20 +49,17 @@ jest.mock('../../molecules/StepIndicator/stepIndicator.tsx', () => ({
   ),
 }));
 
-const renderWithContextProvider = (ui: React.ReactElement) => {
-  return render(
-    <CreateCertificateProvider>
-        {ui}
-    </CreateCertificateProvider>);
-}
-
 describe('ThirdStepForm', () => {
   beforeEach(() => {
     mockSetStep.mockClear();
   });
 
+  afterAll(() => {
+    jest.clearAllMocks()
+  })
+
   it('renders certificate details correctly', () => {
-    renderWithContextProvider(<ThirdStepForm />); //TODO: Still buggy, fails here, due to useContext hook issues (I'm open to suggestions on how to fix this)
+    render(<ThirdStepForm />);
 
     // Headings
     expect(screen.getByText('Certificate Details')).toBeInTheDocument();

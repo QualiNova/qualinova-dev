@@ -38,6 +38,7 @@ export default function CreateCertificationSecondStep() {
 
   return (
     <form
+      role='form'
       className="w-full max-w-[832px] min-w-[320px] rounded-lg flex flex-col items-start p-4 lg:p-6 text-red-500 shadow-sm border border-gray-border-800"
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -74,7 +75,7 @@ export default function CreateCertificationSecondStep() {
         <div className="w-full max-w-[782px] flex items-center justify-between gap-4">
           <label className="w-full flex flex-col gap-3">
             <Input
-              placeholder="e.g contact@acmecorp.com"
+              placeholder="2025-07-30"
               type="date"
               label="Issue Date"
               {...register('issueDate')}
@@ -83,7 +84,7 @@ export default function CreateCertificationSecondStep() {
           </label>
           <label className="w-full flex flex-col gap-3">
             <Input
-              placeholder="e.g contact@acmecorp.com"
+              placeholder="2026-07-30"
               type="date"
               label="Expiry Date"
               {...register('expiryDate')}
@@ -107,7 +108,7 @@ export default function CreateCertificationSecondStep() {
         <Button type="button" variant="outline" onClick={() => setStep?.((step) => step - 1)}>
           Previous Step
         </Button>
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" data-testid="next-step-button">
           Next Step
           <ChevronRight size={14} className="text-black" />
         </Button>
