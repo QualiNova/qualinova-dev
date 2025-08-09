@@ -19,6 +19,7 @@ const NavMenu = () => {
         <NavLink href="/create-certificate">Create Certificate</NavLink>
         <NavLink href="/verify">Verify</NavLink>
         <NavLink href="/certificate">Certificates</NavLink>
+        <NavLink href="/certifier-panel">Certifier Panel</NavLink>
         <NavLink href="/help">Help</NavLink>
       </div>
 
@@ -48,6 +49,8 @@ const NavMenu = () => {
           <NavLink href="/create-certificate">Create Certificate</NavLink>
           <NavLink href="/verify">Verify</NavLink>
           <NavLink href="/certificate">Certificates</NavLink>
+
+          <NavLink href="/certifier-panel">Certifier Panel</NavLink>
           <NavLink href="/help">Help</NavLink>
           <div className="text-white space-y-4 flex flex-col">
             <button>Sign In</button>
