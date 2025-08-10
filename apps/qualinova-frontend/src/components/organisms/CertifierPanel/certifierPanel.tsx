@@ -19,15 +19,21 @@ const CertifierPanel = () => {
     setActiveTab(tab);
   };
 
+  // Initialize certs data
+  useEffect(() => {
+    setCerts(initialAssignedCertificates);
+  }, []);
+
   // Close dropdown on outside click
   useEffect(() => {
-    setCerts(initialAssignedCertificates)
     if (!dropdownOpen) return;
+    
     const handleClick = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setDropdownOpen(false);
       }
     };
+    
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
   }, [dropdownOpen]);

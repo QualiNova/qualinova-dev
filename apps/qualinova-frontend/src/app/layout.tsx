@@ -30,7 +30,7 @@ export default function RootLayout({
           src="https://www.googletagmanager.com/gtag/js?id=G-GX26MM78LB"
           strategy="afterInteractive"
         />
-        <Script>
+        <Script id="gtag-config">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -40,7 +40,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="flex flex-col min-h-screen">
+      <body className="flex flex-col min-h-screen" suppressHydrationWarning={true}>
         <UserProvider>
           <Header />
           <main className={`${inter.className} flex-grow`}>{children}</main>
