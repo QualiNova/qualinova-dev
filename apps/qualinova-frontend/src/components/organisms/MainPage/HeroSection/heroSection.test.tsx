@@ -47,7 +47,7 @@ describe("HeroSection", () => {
     });
 
     it("renders the certificate placeholder with SVG icon", () => {
-      const svgElement = screen.getByRole("img", { hidden: true });
+      const svgElement = screen.getByTestId('certificate-placeholder');
       expect(svgElement).toBeInTheDocument();
     });
   });
@@ -119,8 +119,7 @@ describe("HeroSection", () => {
 
     it("has responsive image container sizing", () => {
       const imageContainer = screen
-        .getByRole("img", { hidden: true })
-        .closest("div");
+        .getByTestId('certificate-placeholder-container');
       expect(imageContainer).toHaveClass("md:h-[600px]", "h-[400px]");
     });
 
@@ -141,11 +140,9 @@ describe("HeroSection", () => {
     it("maintains proper component composition", () => {
       // Check that main sections are present
       const leftContent = screen
-        .getByText("Try for Free")
-        .closest('div[class*="space-y-6"]');
+        .getByTestId('left-section-container');
       const rightContent = screen
-        .getByRole("img", { hidden: true })
-        .closest('div[class*="w-full md:w-1/2"]');
+        .getByTestId('right-section-container');
 
       expect(leftContent).toBeInTheDocument();
       expect(rightContent).toBeInTheDocument();

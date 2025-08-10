@@ -58,11 +58,12 @@ const LoginForm = () => {
               {...register("email")}
               error={errors.email?.message}
               className="bg-[#0c0c16] border-[#27272A] text-white"
+              data-testid="email-input"
             />
           </div>
 
           <div className="space-y-1.5">
-            <div className="flex justify-between">
+            <div className="flex justify-between" data-testid="forgot-password">
               <label className="block text-sm font-medium text-white">
                 Password
               </label>
@@ -75,6 +76,7 @@ const LoginForm = () => {
               {...register("password")}
               error={errors.password?.message}
               className="bg-[#0c0c16] border-[#27272A] text-white"
+              data-testid="password-input"
             />
           </div>
 
@@ -83,6 +85,7 @@ const LoginForm = () => {
               label={<div className="text-sm text-white">Remember me</div>}
               {...register("rememberMe")}
               error={errors.rememberMe?.message}
+              data-testid='checkbox-remember'
             />
           </div>
 
@@ -90,6 +93,7 @@ const LoginForm = () => {
             type="submit"
             fullWidth
             className="rounded-md bg-[#2563EB] hover:bg-[#2563EB]/90 text-white py-2.5"
+            data-testid="submit-button"
           >
             <p className="text-sm leading-5 text-white font-medium">Sign In</p>
           </Button>
@@ -105,10 +109,11 @@ const LoginForm = () => {
           <Button
             type="button"
             className="flex justify-center items-center border border-[#27272A] w-full hover:bg-[#27272A] py-2.5 text-white rounded-md"
+            data-testid="github-button"
           >
             <Image
               src={githubIcon}
-              alt=""
+              alt="github icon"
               width={20}
               height={20}
               className="mr-2"
@@ -116,7 +121,7 @@ const LoginForm = () => {
             GitHub
           </Button>
 
-          <div className="flex justify-center text-sm items-center">
+          <div className="flex justify-center text-sm items-center" data-testid="register">
             <p className="text-[#A1A1AA]">
               Don&apos;t have an account?{" "}
               <Link

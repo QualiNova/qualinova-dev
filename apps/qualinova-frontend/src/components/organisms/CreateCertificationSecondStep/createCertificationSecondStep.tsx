@@ -38,17 +38,18 @@ export default function CreateCertificationSecondStep() {
 
   return (
     <form
+      role='form'
       className="w-full max-w-[832px] min-w-[320px] rounded-lg flex flex-col items-start p-4 lg:p-6 text-red-500 shadow-sm border border-gray-border-800"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="w-full">
         <div className="w-full flex items-center justify-between gap-5">
-          <h3 className="text-gray-text-50 font-semibold text-sm lg:text-2xl">
+          <h3 data-testid="step-title" className="text-gray-text-50 font-semibold text-sm lg:text-2xl">
             Certificate Details
           </h3>
           <StepIndicator currentStep={2} totalSteps={3} />
         </div>
-        <p className="mt-[6px] text-gray-text-400 font-normal text-xs lg:text-sm">
+        <p data-testid="form-title" className="mt-[6px] text-gray-text-400 font-normal text-xs lg:text-sm">
           Add recipient and validity details
         </p>
       </div>
@@ -74,7 +75,7 @@ export default function CreateCertificationSecondStep() {
         <div className="w-full max-w-[782px] flex items-center justify-between gap-4">
           <label className="w-full flex flex-col gap-3">
             <Input
-              placeholder="e.g contact@acmecorp.com"
+              placeholder="2025-07-30"
               type="date"
               label="Issue Date"
               {...register('issueDate')}
@@ -83,7 +84,7 @@ export default function CreateCertificationSecondStep() {
           </label>
           <label className="w-full flex flex-col gap-3">
             <Input
-              placeholder="e.g contact@acmecorp.com"
+              placeholder="2026-07-30"
               type="date"
               label="Expiry Date"
               {...register('expiryDate')}
@@ -98,7 +99,7 @@ export default function CreateCertificationSecondStep() {
             label="Certificate ID (Optional)"
             {...register('certificateId')}
           />
-          <p className="text-gray-text-400 font-normal text-[10px] lg:text-xs">
+          <p data-testid="identifier-text" className="text-gray-text-400 font-normal text-[10px] lg:text-xs">
             A unique identifier will be automatically generated if left blank
           </p>
         </label>
@@ -107,7 +108,7 @@ export default function CreateCertificationSecondStep() {
         <Button type="button" variant="outline" onClick={() => setStep?.((step) => step - 1)}>
           Previous Step
         </Button>
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" data-testid="next-step-button">
           Next Step
           <ChevronRight size={14} className="text-black" />
         </Button>

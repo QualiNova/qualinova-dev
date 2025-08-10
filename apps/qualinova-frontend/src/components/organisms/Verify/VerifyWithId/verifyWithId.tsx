@@ -5,6 +5,7 @@ const VerifyWithId = () => {
     <div
       className="space-y-6 rounded-lg p-6 border-2"
       style={{ borderColor: "#1c2537" }}
+      data-testid="verify-with-id-container"
     >
       <div>
         <div className="text-3xl font-bold">Enter Certificate ID</div>
@@ -25,7 +26,7 @@ const VerifyWithId = () => {
         />
         <div className="flex" style={{ backgroundColor: "#1e3580" }}>
           <Image alt="search" src="/search.svg" width={25} height={25} />
-          <button type="button" className="mx-4">
+          <button type="button" className="mx-4" data-testid="verify-button">
             Verify
           </button>
         </div>

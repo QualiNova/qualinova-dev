@@ -88,17 +88,11 @@ const AuditsContent = () => {
   const [total] = useState(initialAudits.length);
   const [max] = useState(initialAudits.length);
 
-  // Calculate statistics
+  // Calculate audit statistics for feat/audits-tab functionality
   const totalAudits = audits.length;
-  const pendingAudits = audits.filter(
-    (audit) => audit.status === AuditStatus.Pending
-  ).length;
-  const inProcessAudits = audits.filter(
-    (audit) => audit.status === AuditStatus.InProcess
-  ).length;
-  const completedAudits = audits.filter(
-    (audit) => audit.status === AuditStatus.Completed
-  ).length;
+  const pendingAudits = audits.filter(audit => audit.status === AuditStatus.Pending).length;
+  const inProcessAudits = audits.filter(audit => audit.status === AuditStatus.InProcess).length;
+  const completedAudits = audits.filter(audit => audit.status === AuditStatus.Completed).length;
 
   const handleSearch = (value: string) => {
     setSearchTerm(value);

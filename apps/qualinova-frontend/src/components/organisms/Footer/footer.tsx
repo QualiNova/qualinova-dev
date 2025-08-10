@@ -10,7 +10,7 @@ const inter = Inter({
 const Footer: React.FC = () => {
   return (
     <footer className={`${inter.className} bg-[#030712] text-gray-400 py-4`}>
-      <div className="container mx-auto flex flex-col md:flex-row justify-around items-center px-4">
+      <div data-testid='footer-container' className="container mx-auto flex flex-col md:flex-row justify-around items-center px-4">
         <div className="flex space-x-2 ">
           <Shield className="text-[#2563EB]" data-testid="shield-icon" />
           <span className="text-[#FAFAFA] font-semibold text-xl">

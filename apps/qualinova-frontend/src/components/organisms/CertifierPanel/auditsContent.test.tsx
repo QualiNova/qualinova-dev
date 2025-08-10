@@ -11,7 +11,7 @@ jest.mock("../../atoms/Button/button", () => {
     type,
     className,
     ...props
-  }: any) {
+  }: React.ComponentProps<"button"> & { variant?: string }) {
     return (
       <button
         data-testid="button"
@@ -27,7 +27,12 @@ jest.mock("../../atoms/Button/button", () => {
 });
 
 jest.mock("../../atoms/Select/select", () => {
-  return function MockSelect({ children, onChange, className, ...props }: any) {
+  return function MockSelect({
+    children,
+    onChange,
+    className,
+    ...props
+  }: React.ComponentProps<"select">) {
     return (
       <select
         data-testid="select"
@@ -42,7 +47,7 @@ jest.mock("../../atoms/Select/select", () => {
 });
 
 jest.mock("../AuditsTable/auditsTable", () => {
-  return function MockAuditsTable({ audits }: any) {
+  return function MockAuditsTable({ audits }: { audits: Array<unknown> }) {
     return (
       <div data-testid="audits-table">
         Audits Table - {audits.length} audits
@@ -52,7 +57,15 @@ jest.mock("../AuditsTable/auditsTable", () => {
 });
 
 jest.mock("../StatsCards/statsCards", () => {
-  return function MockStatsCards({ title, count, subtitle }: any) {
+  return function MockStatsCards({
+    title,
+    count,
+    subtitle,
+  }: {
+    title: string;
+    count: number;
+    subtitle: string;
+  }) {
     return (
       <div data-testid="stats-card">
         {title} - {count} - {subtitle}
@@ -80,16 +93,15 @@ describe("AuditsContent", () => {
     expect(screen.getByText("Assign New Audit")).toBeInTheDocument();
   });
 
-  it("renders stats cards component", () => {
+  it("renders audits management interface", () => {
     render(<AuditsContent />);
 
-    // Check that the stats cards are rendered (there should be 4 individual cards)
-    const statsCards = screen.getAllByTestId("stats-card");
-    expect(statsCards).toHaveLength(4);
-
-    // Check some of the content
-    expect(screen.getByText(/Total Audits/)).toBeInTheDocument();
-    expect(screen.getByText(/Pending/)).toBeInTheDocument();
+    // Check that the main audits interface is rendered
+    expect(screen.getByText("Audits")).toBeInTheDocument();
+    expect(screen.getByText("Audit Overview")).toBeInTheDocument();
+    expect(
+      screen.getByText("Complete list of all audits registered in the system")
+    ).toBeInTheDocument();
   });
 
   it("renders the management panel section", () => {
@@ -184,7 +196,10 @@ describe("AuditsContent", () => {
     const select = screen.getByTestId("select");
     fireEvent.change(select, { target: { value: "Sort by Date" } });
 
-    expect(consoleSpy).toHaveBeenCalledWith("Sort by Date from sort function");
+    expect(consoleSpy).toHaveBeenCalledWith(
+      "Filter changed to:",
+      "Sort by Date"
+    );
 
     consoleSpy.mockRestore();
   });

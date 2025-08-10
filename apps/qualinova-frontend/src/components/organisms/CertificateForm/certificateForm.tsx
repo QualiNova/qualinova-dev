@@ -8,7 +8,7 @@ import Select from '@/components/atoms/Select/select';
 import Radio from '@/components/atoms/Radio/radio';
 import FormField from '@/components/molecules/FormField/formField';
 import StepIndicator from '@/components/molecules/StepIndicator/stepIndicator';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { step1Schema } from '@/schemas/CreateCertificate/createCertificateSchemas';

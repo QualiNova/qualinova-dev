@@ -82,7 +82,7 @@ describe("Footer", () => {
     });
 
     it("has proper container styling", () => {
-      const container = screen.getByText("QualiNova").closest("div");
+      const container = screen.getByTestId('footer-container');
       expect(container).toHaveClass(
         "container",
         "mx-auto",

@@ -2,26 +2,24 @@ import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 
 // Define the tab types
-type TabType = "overview" | "analytics" | "reports";
+export type CertifierTabType = "audits";
 
-interface DashboardTabsProps {
-  activeTab: TabType;
-  onTabChange: (tab: TabType) => void;
+interface CertifierTabsProps {
+  activeTab: CertifierTabType;
+  onTabChange: (tab: CertifierTabType) => void;
   className?: string;
 }
 
-const DashboardTabs = ({
+const CertifierTabs = ({
   activeTab,
   onTabChange,
   className,
-}: DashboardTabsProps) => {
+}: CertifierTabsProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const tabs: { id: TabType; label: string }[] = [
-    { id: "overview", label: "Overview" },
-    { id: "analytics", label: "Analytics" },
-    { id: "reports", label: "Reports" },
+  const tabs: { id: CertifierTabType; label: string }[] = [
+    { id: "audits", label: "Audits" },
   ];
 
   // Handle responsive behavior
@@ -44,7 +42,7 @@ const DashboardTabs = ({
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleTabClick = (tab: TabType) => {
+  const handleTabClick = (tab: CertifierTabType) => {
     onTabChange(tab);
     setIsMenuOpen(false);
   };
@@ -109,4 +107,4 @@ const DashboardTabs = ({
   );
 };
 
-export default DashboardTabs;
+export default CertifierTabs;
