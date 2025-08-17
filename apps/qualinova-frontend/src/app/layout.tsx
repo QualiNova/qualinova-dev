@@ -18,31 +18,36 @@ export const metadata: Metadata = {
     description: 'Create blockchain-verified certificates',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <html lang="en">
-            <head>
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-GX26MM78LB"
-                    strategy="afterInteractive"
-                />
-                <Script id="google-tag-manager" strategy="afterInteractive">
-                    {`
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-GX26MM78LB"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-config">
+          {`
+
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
             gtag('config', 'G-GX26MM78LB');
           `}
-                </Script>
-            </head>
-            <body className="flex flex-col min-h-screen">
-                <UserProvider>
-                    <Header />
-                    <main className={`${inter.className} flex-grow`}>{children}</main>
-                    <Footer />
-                </UserProvider>
-            </body>
-        </html>
-    );
+        </Script>
+      </head>
+      <body className="flex flex-col min-h-screen" suppressHydrationWarning={true}>
+        <UserProvider>
+          <Header />
+          <main className={`${inter.className} flex-grow`}>{children}</main>
+          <Footer />
+        </UserProvider>
+      </body>
+    </html>
+  );
 }
