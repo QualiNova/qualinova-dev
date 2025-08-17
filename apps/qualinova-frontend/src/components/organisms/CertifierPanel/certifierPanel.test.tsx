@@ -1,3 +1,4 @@
+
 import { render, screen, fireEvent } from "@testing-library/react";
 import CertifierPanel from "./certifierPanel";
 
@@ -48,4 +49,5 @@ describe("CertifierPanel", () => {
     // Should still show audits content as it's the only tab
     expect(screen.getByTestId("audits-content")).toBeInTheDocument();
   });
+
 });

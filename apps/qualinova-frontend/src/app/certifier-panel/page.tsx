@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import CertifierPanel from "@/components/organisms/CertifierPanel/certifierPanel";
+import CertifierPanel from '@/components/organisms/CertifierPanel/certifierPanel';
 
 export default function CertifierPanelPage() {
-  return <CertifierPanel />;
+    return <CertifierPanel />;
 }

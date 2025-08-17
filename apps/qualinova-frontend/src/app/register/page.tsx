@@ -1,9 +1,9 @@
-import React from "react";
-import RegisterForm from "@/components/organisms/Registerform/registerForm";
+import React from 'react';
+import RegisterForm from '@/components/organisms/Registerform/registerForm';
 export default function page() {
-  return (
-    <>
-      <RegisterForm />;
-    </>
-  );
+    return (
+        <>
+            <RegisterForm />;
+        </>
+    );
 }

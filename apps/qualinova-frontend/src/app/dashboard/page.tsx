@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import Dashboard from "@/components/organisms/Dashboard/dashboard";
+import Dashboard from '@/components/organisms/Dashboard/dashboard';
 export default function DashboardPage() {
-  return <Dashboard />;
+    return <Dashboard />;
 }

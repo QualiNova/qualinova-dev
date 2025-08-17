@@ -1,11 +1,11 @@
-import LoginForm from "@/components/organisms/LoginForm/loginForm";
+import LoginForm from '@/components/organisms/LoginForm/loginForm';
 
 const LoginPage = () => {
-  return (
-    <div>
-      <LoginForm />
-    </div>
-  );
+    return (
+        <div>
+            <LoginForm />
+        </div>
+    );
 };
 
 export default LoginPage;

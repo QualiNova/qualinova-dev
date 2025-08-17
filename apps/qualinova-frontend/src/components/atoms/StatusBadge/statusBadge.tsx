@@ -56,6 +56,7 @@ const StatusBadge = ({ status }: { status: string }) => {
     default:
       return <div className={base}>{status}</div>;
   }
+
 };
 
 export default StatusBadge;
