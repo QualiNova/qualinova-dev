@@ -38,15 +38,16 @@ const CertifierPanel = () => {
     return () => document.removeEventListener('mousedown', handleClick);
   }, [dropdownOpen]);
 
-  // Filtering logic (simple, practical)
-  const filtered = certs.filter(cert => {
-    const matchesSearch =
-      cert.id.toLowerCase().includes(search.toLowerCase()) ||
-      cert.certificateType.toLowerCase().includes(search.toLowerCase()) ||
-      cert.receivingCompany.toLowerCase().includes(search.toLowerCase());
-    const matchesStatus = status === 'All Statuses' || cert.status === status;
-    return matchesSearch && matchesStatus;
-  });
+
+    // Filtering logic (simple, practical)
+    const filtered = certs.filter((cert) => {
+        const matchesSearch =
+            cert.id.toLowerCase().includes(search.toLowerCase()) ||
+            cert.certificateType.toLowerCase().includes(search.toLowerCase()) ||
+            cert.receivingCompany.toLowerCase().includes(search.toLowerCase());
+        const matchesStatus = status === 'All Statuses' || cert.status === status;
+        return matchesSearch && matchesStatus;
+    });
 
   const renderContent = () => {
     switch (activeTab) {
@@ -63,6 +64,7 @@ const CertifierPanel = () => {
       <div className="flex-1">{renderContent()}</div>
     </div>
   );
+
 };
 
 export default CertifierPanel;

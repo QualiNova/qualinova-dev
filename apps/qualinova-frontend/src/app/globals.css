@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#030817] text-white;
+    @apply bg-[#030817] text-white;
 }
 
 * {
-  /* font-size: small; */
+    /* font-size: small; */
 }
 
 /* Style native calendar icon in input[type="date"] for WebKit browsers */
 .custom-date-input::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* Inverts calendar icon from black to white on dark background */
-  opacity: 1;
-  cursor: pointer
+    filter: invert(1); /* Inverts calendar icon from black to white on dark background */
+    opacity: 1;
+    cursor: pointer;
 }

@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 const StatusBadge = ({ status }: { status: string }) => {
+
   const base =
     "px-2 py-1 font-medium rounded-xl text-xs flex items-center justify-center gap-1";
   switch (status) {
@@ -56,6 +57,7 @@ const StatusBadge = ({ status }: { status: string }) => {
     default:
       return <div className={base}>{status}</div>;
   }
+
 };
 
 export default StatusBadge;

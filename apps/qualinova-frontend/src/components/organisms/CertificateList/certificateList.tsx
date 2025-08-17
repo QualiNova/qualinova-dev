@@ -2,11 +2,11 @@ import RecentCertificate from '@/components/molecules/RecentCertificate/recentCe
 import { Certificate } from '@/data/dashboardData';
 
 const CertificateList = ({ certificates }: { certificates: Certificate[] }) => (
-  <div className="space-y-2">
-    {certificates.map((cert, i) => (
-      <RecentCertificate key={i} cert={cert} />
-    ))}
-  </div>
+    <div className="space-y-2">
+        {certificates.map((cert, i) => (
+            <RecentCertificate key={i} cert={cert} />
+        ))}
+    </div>
 );
 
 export default CertificateList;
